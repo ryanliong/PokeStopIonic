@@ -1,0 +1,7 @@
+{
+  "name": "PokeStopIonic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
