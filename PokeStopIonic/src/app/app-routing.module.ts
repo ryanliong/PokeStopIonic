@@ -65,6 +65,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     loadChildren: () => import('./sign-up/sign-up.module').then( m => m.SignUpPageModule)
+  },
+  {
+    path: 'access-right-error',
+    loadChildren: () => import('./access-right-error/access-right-error.module').then( m => m.AccessRightErrorPageModule)
   }
  
 ];
