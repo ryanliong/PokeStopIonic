@@ -16,6 +16,14 @@ const routes: Routes = [
         loadChildren: () => import('../collect/browse/browse.module').then(m => m.BrowsePageModule)
       },
       {
+        path: 'my-collection',
+        loadChildren: () => import('../collect/my-collection/my-collection.module').then(m => m.MyCollectionPageModule)
+      },
+      {
+        path: 'wishlist',
+        loadChildren: () => import('../collect/wishlist/wishlist.module').then(m => m.WishlistPageModule)
+      },
+      {
         path: '',
         redirectTo: 'collect-home',
         pathMatch: 'full'

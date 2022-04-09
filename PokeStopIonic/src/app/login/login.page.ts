@@ -17,4 +17,8 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/tabs'])
   }
 
+  navigateToSignUp() {
+    this.router.navigate(['/sign-up'])
+  }
+
 }

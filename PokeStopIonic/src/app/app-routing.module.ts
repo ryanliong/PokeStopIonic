@@ -30,7 +30,43 @@ const routes: Routes = [
   {
     path: 'browse',
     loadChildren: () => import('./collect/browse/browse.module').then( m => m.BrowsePageModule)
-  }  
+  },   {
+    path: 'trade-home',
+    loadChildren: () => import('./trade/trade-home/trade-home.module').then( m => m.TradeHomePageModule)
+  },
+  {
+    path: 'trade-search',
+    loadChildren: () => import('./trade/trade-search/trade-search.module').then( m => m.TradeSearchPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'my-orders',
+    loadChildren: () => import('./shop/my-orders/my-orders.module').then( m => m.MyOrdersPageModule)
+  },
+  {
+    path: 'cart',
+    loadChildren: () => import('./shop/cart/cart.module').then( m => m.CartPageModule)
+  },
+  {
+    path: 'my-collection',
+    loadChildren: () => import('./collect/my-collection/my-collection.module').then( m => m.MyCollectionPageModule)
+  },
+  {
+    path: 'wishlist',
+    loadChildren: () => import('./collect/wishlist/wishlist.module').then( m => m.WishlistPageModule)
+  },
+  {
+    path: 'my-listings',
+    loadChildren: () => import('./trade/my-listings/my-listings.module').then( m => m.MyListingsPageModule)
+  },
+  {
+    path: 'sign-up',
+    loadChildren: () => import('./sign-up/sign-up.module').then( m => m.SignUpPageModule)
+  }
+ 
 ];
 @NgModule({
   imports: [

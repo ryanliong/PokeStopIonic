@@ -16,6 +16,18 @@ const routes: Routes = [
         loadChildren: () => import('../shop/shop-search/shop-search.module').then(m => m.ShopSearchPageModule)
       },
       {
+        path: 'cart',
+        loadChildren: () => import('../shop/cart/cart.module').then(m => m.CartPageModule)
+      },
+      {
+        path: 'my-orders',
+        loadChildren: () => import('../shop/my-orders/my-orders.module').then(m => m.MyOrdersPageModule)
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
+      },
+      {
         path: '',
         redirectTo: 'shop-home',
         pathMatch: 'full'

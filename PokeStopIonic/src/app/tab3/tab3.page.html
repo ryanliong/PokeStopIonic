@@ -1,17 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-split-pane contentId="trade-menu" [disabled]="!paneEnabled">
+  <ion-menu contentId="trade-menu" menuId="trade-menu" side="start" type="overlay">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Trade Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" menu="trade-menu">
+          <ion-item routerLink="/tabs/tab3/trade-home" routerDirection="root" routerLinkActive="active-item">
+            <ion-icon name='home'></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-item>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+          <ion-item routerLink="/tabs/tab3/trade-search" routerDirection="root" routerLinkActive="active-item">
+            <ion-icon name="search"></ion-icon>
+            <ion-label>Search</ion-label>
+          </ion-item>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
-</ion-content>
+          <ion-item routerLink="/tabs/tab3/my-listings" routerDirection="root" routerLinkActive="active-item">
+            <ion-icon name="person"></ion-icon>
+            <ion-label>My Listings</ion-label>
+          </ion-item>
+
+          <ion-button (click)="navigateToSettings()">
+            <ion-icon name='hammer' is-active="false"></ion-icon>
+            Settings
+          </ion-button>
+
+          <ion-button (click)="testLogout()">
+            <ion-icon slot="start" name="arrow-forward"></ion-icon>
+            Logout
+          </ion-button>
+
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+  <ion-router-outlet id="trade-menu"></ion-router-outlet>
+</ion-split-pane>
