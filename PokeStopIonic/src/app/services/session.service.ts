@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Member } from '../models/member';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,12 @@ export class SessionService {
     sessionStorage['isLogin'] = isLogin;
   }
 
-  getCurrentStaff(): Member
+  getCurrentMember(): Member
   {
     return JSON.parse(sessionStorage['currentMember']);
   }
 
-  setCurrentStaff(currentMember: Member | null): void
+  setCurrentMember(currentMember: Member | null): void
   {		 
     sessionStorage['currentMember'] = JSON.stringify(currentMember);
   }
