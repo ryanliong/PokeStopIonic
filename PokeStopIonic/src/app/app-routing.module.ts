@@ -4,31 +4,34 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'index',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
-    path: 'index',
-    loadChildren: () => import('./index/index.module').then( m => m.IndexPageModule)
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'header',
-    loadChildren: () => import('./header/header.module').then( m => m.HeaderPageModule)
+    path: 'shop-home',
+    loadChildren: () => import('./shop/shop-home/shop-home.module').then( m => m.ShopHomePageModule)
   },
   {
-    path: 'footer',
-    loadChildren: () => import('./footer/footer.module').then( m => m.FooterPageModule)
+    path: 'shop-search',
+    loadChildren: () => import('./shop/shop-search/shop-search.module').then( m => m.ShopSearchPageModule)
   },
   {
-    path: 'index',
-    loadChildren: () => import('./index/index.module').then( m => m.IndexPageModule)
-  }
+    path: 'collect-home',
+    loadChildren: () => import('./collect/collect-home/collect-home.module').then( m => m.CollectHomePageModule)
+  },
+  {
+    path: 'browse',
+    loadChildren: () => import('./collect/browse/browse.module').then( m => m.BrowsePageModule)
+  }  
 ];
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })

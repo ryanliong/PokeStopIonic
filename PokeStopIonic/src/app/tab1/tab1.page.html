@@ -1,0 +1,25 @@
+<ion-split-pane contentId="shop-menu" [disabled]="!paneEnabled">
+  <ion-menu contentId="shop-menu" menuId="shop-menu" side="start" type="overlay">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menu 1</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" menu="shop-menu">
+          <ion-item routerLink="/tabs/tab1/shop-home" routerDirection="root" routerLinkActive="active-item">
+            <ion-label>Home</ion-label>
+          </ion-item>
+
+          <ion-item routerLink="/tabs/tab1/shop-search" routerDirection="root" routerLinkActive="active-item">
+            <ion-label>Search</ion-label>
+          </ion-item>
+
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+  <ion-router-outlet id="shop-menu"></ion-router-outlet>
+</ion-split-pane>

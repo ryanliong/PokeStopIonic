@@ -1,0 +1,25 @@
+<ion-split-pane contentId="collect-menu" [disabled]="!paneEnabled">
+  <ion-menu contentId="collect-menu" menuId="collect-menu" side="start" type="overlay">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menu 2</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" menu="collect-menu">
+          <ion-item routerLink="/tabs/tab2/collect-home" routerDirection="root" routerLinkActive="active-item">
+            <ion-label>Home</ion-label>
+          </ion-item>
+
+          <ion-item routerLink="/tabs/tab2/browse" routerDirection="root" routerLinkActive="active-item">
+            <ion-label>Browse</ion-label>
+          </ion-item>
+
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+  <ion-router-outlet id="collect-menu"></ion-router-outlet>
+</ion-split-pane>
