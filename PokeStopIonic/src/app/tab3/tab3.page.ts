@@ -1,3 +1,4 @@
+import { AuthenticationService } from '../services/authentication.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
@@ -10,7 +11,7 @@ import { MenuController } from '@ionic/angular';
 export class Tab3Page {
 
   paneEnabled = true;
-  constructor(private menuController: MenuController, private router:Router) {}
+  constructor(private menuController: MenuController, private router:Router, private authService: AuthenticationService) {}
 
   ionViewWillEnter() {
     this.paneEnabled = true;
@@ -21,9 +22,9 @@ export class Tab3Page {
     this.paneEnabled = false;
   }
 
-  testLogout() {
-    //TODO some logic to remove loggged in user from this session
-    this.router.navigate(['/login'])
+  async testLogout() {
+    await this.authService.logout();
+    this.router.navigate(['/homepage'])
   }
 
   navigateToSettings() {

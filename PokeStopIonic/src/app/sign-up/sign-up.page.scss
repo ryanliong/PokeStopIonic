@@ -1,0 +1,22 @@
+ion-content {
+    --padding-top: 50px;
+    --padding-start: 20%;
+    --padding-end: 20%;
+    --background: url('https://i.pinimg.com/originals/69/68/1e/69681ef4639fa37d34c05f824a597cb3.jpg') 0 0/100% 100% no-repeat;
+}
+ 
+.input-group {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+ 
+.errors {
+    font-size: small;
+    color: #fff;
+    background: var(--ion-color-danger);
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
