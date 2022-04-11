@@ -1,15 +1,32 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/homepage',
     pathMatch: 'full'
+  },
+  {
+    path: 'homepage',
+    loadChildren: () => import('./homepage/homepage.module').then( m => m.HomepagePageModule)
   },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'sign-up',
+    loadChildren: () => import('./sign-up/sign-up.module').then( m => m.SignUpPageModule)
+  },
+  {
+    path: 'access-right-error',
+    loadChildren: () => import('./access-right-error/access-right-error.module').then( m => m.AccessRightErrorPageModule)
   },
   {
     path: 'tabs',
@@ -61,16 +78,8 @@ const routes: Routes = [
   {
     path: 'my-listings',
     loadChildren: () => import('./trade/my-listings/my-listings.module').then( m => m.MyListingsPageModule)
-  },
-  {
-    path: 'sign-up',
-    loadChildren: () => import('./sign-up/sign-up.module').then( m => m.SignUpPageModule)
-  },
-  {
-    path: 'access-right-error',
-    loadChildren: () => import('./access-right-error/access-right-error.module').then( m => m.AccessRightErrorPageModule)
   }
- 
+
 ];
 @NgModule({
   imports: [

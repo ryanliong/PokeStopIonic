@@ -1,4 +1,7 @@
+import { AuthenticationService } from '../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,18 +10,54 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  credentials: FormGroup;
 
-  constructor(private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthenticationService,
+    private alertController: AlertController,
+    private router: Router,
+    private loadingController: LoadingController
+  ) {}
 
   ngOnInit() {
+    this.credentials = this.fb.group({
+      username: ['member1', [Validators.required]],
+      password: ['password', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
-  testLogin() {
-    this.router.navigate(['/tabs'])
+  async login() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
+    this.authService.login(this.credentials.value).subscribe(
+      async (res) => {
+        await loading.dismiss();
+        this.router.navigateByUrl('/tabs/tabs1/shop-home', { replaceUrl: true });
+      },
+      async (res) => {
+        await loading.dismiss();
+        const alert = await this.alertController.create({
+          header: 'Login failed',
+          message: res.error.error,
+          buttons: ['OK'],
+        });
+
+        await alert.present();
+      }
+    );
   }
 
   navigateToSignUp() {
-    this.router.navigate(['/sign-up'])
+    this.router.navigateByUrl('/sign-up');
   }
 
+  get username() {
+    return this.credentials.get('username');
+  }
+
+  get password() {
+    return this.credentials.get('password');
+  }
 }
