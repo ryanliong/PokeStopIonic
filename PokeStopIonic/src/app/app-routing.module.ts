@@ -78,7 +78,12 @@ const routes: Routes = [
   {
     path: 'my-listings',
     loadChildren: () => import('./trade/my-listings/my-listings.module').then( m => m.MyListingsPageModule)
+  },
+  {
+    path: 'tabs/tab2/viewSet/:setId',
+    loadChildren: () => import('./collect/view-set/view-set.module').then( m => m.ViewSetPageModule)
   }
+
 
 ];
 @NgModule({

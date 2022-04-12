@@ -2,32 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-import { Generation } from '../models/generation';
 import { SetEntity } from '../models/set-entity';
 
 const httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class GenerationService {
+export class SetService {
 
-  baseUrl: string = "/api/Generation";
+  baseUrl: string = "/api/Set";
 
   constructor(private httpClient: HttpClient) { }
 
-  getGenerations(): Observable<Generation[]>
-	{				
-	  return this.httpClient.get<Generation[]>(this.baseUrl + "/retrieveAllGenerations").pipe
-	  (
-		catchError(this.handleError)
-	  );
-	}
-		
-	private handleError(error: HttpErrorResponse)
+  getSetById(setId : number): Observable<SetEntity> {
+    return this.httpClient.get<SetEntity>(this.baseUrl + "/retrieveSet/" + setId).pipe(catchError(this.handleError));
+  }
+
+
+  private handleError(error: HttpErrorResponse)
 	{
 	  let errorMessage: string = "";
 	
