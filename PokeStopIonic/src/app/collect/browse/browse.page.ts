@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Generation } from 'src/app/models/generation';
+import { GenerationService } from 'src/app/services/generation.service';
 
 @Component({
   selector: 'app-browse',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrowsePage implements OnInit {
 
-  constructor() { }
+  generations: Generation[] | null;
+
+  constructor(private generationService: GenerationService) {
+    this.generations = new Array();
+  }
 
   ngOnInit() {
+    this.generationService.getRecords().subscribe({
+      next:(response) => {
+        this.generations = response;
+      },
+      error:(error)=>{
+        console.log('browseComponent.ts: ' + error);
+      }
+    });
   }
 
 }
