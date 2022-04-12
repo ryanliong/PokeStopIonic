@@ -4,7 +4,7 @@ import { Member } from "./member";
 export class Collection {
   collectionId: number | undefined;  
   member: Member | undefined;
-  cards: Card[] | undefined;
+  cardEntities: Card[] | undefined;
 
 
   constructor(collectionId?: number ) {

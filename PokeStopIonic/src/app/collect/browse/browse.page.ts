@@ -24,8 +24,8 @@ export class BrowsePage implements OnInit {
     this.generationService.getGenerations().subscribe({
       next:(response) => {
         this.generations = response;
-        for (let gen of this.generations) {
-          this.setEntities.push(gen.setEntities);
+        for (let i = 0; i <= this.generations.length; i++) {
+          this.setEntities.push(this.generations[i].setEntities);
         }
       },
       error:(error)=>{
