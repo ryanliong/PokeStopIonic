@@ -10,14 +10,17 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>View All Generations</ion-card-title>
+      <ion-card-title *ngFor="let generation of generations">{{generation.generationName}} 
+        <ion-img src="{{generation.generationPic}}"></ion-img>
+      </ion-card-title>     
     </ion-card-header>
     <ion-card-content>
-      <ion-list>
-        <ion-button expand="full" *ngFor="let generation of generations">
-          <ion-icon slot="start" name="arrow-forward"></ion-icon>
-          {{generation.generationId}} - {{generation.generationName}}
-        </ion-button>
+      
+      <ion-list *ngFor="let setList of setEntities">
+          <ion-button (click)="viewSet($event, setEntity)" *ngFor="let setEntity of setList">
+            {{setEntity.setId}} - {{setEntity.setName}} &nbsp; &nbsp; &nbsp;
+            <ion-img src="{{setEntity.setPic}}" style="width: 30%;" slot="end"></ion-img>
+          </ion-button>
       </ion-list>
     </ion-card-content>
   </ion-card>

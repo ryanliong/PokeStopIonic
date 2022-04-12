@@ -8,7 +8,7 @@ export class SetEntity {
   setPic: string | undefined;
   releaseDate: Date | undefined;
 
-  cards: Card[] | undefined;
+  cardEntities: Card[] | undefined;
   generation: Generation | undefined;
 
 

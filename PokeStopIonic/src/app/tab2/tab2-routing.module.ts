@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../collect/wishlist/wishlist.module').then(m => m.WishlistPageModule)
       },
       {
+        path: 'viewSet/:setId',
+        loadChildren: () => import('../collect/view-set/view-set.module').then(m => m.ViewSetPageModule)
+      },
+      {
         path: '',
         redirectTo: 'collect-home',
         pathMatch: 'full'

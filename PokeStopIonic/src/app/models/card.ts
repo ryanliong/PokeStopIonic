@@ -4,6 +4,7 @@ import { SetEntity } from "./set-entity";
 
 export class Card {
   cardId: number | undefined;
+  cardName: string | undefined;
   cardNumber: number | undefined;
   cardRarity: RarityType | undefined;
   cardElementType: ElementType | undefined;
@@ -13,12 +14,14 @@ export class Card {
 
   constructor(
     cardId?: number , 
+    cardName?: string,
     cardNumber?: number , 
     cardRarity?: RarityType , 
     cardElementType?: ElementType , 
     cardPic?: String
 ) {
     this.cardId = cardId
+    this.cardName = cardName
     this.cardNumber = cardNumber
     this.cardRarity = cardRarity
     this.cardElementType = cardElementType
