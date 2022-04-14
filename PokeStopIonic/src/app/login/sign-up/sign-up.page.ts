@@ -3,16 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { SessionService } from '../services/session.service';
-import { MemberService } from '../services/member.service';
-import { Member } from '../models/member';
+import { SessionService } from '../../services/session.service';
+import { MemberService } from '../../services/member.service';
+import { Member } from '../../models/member';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.page.html',
+  styleUrls: ['./sign-up.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class SignUpPage implements OnInit {
   submitted: boolean;
   username: string;
   password: string;

@@ -33,7 +33,7 @@
             Settings
           </ion-button>
 
-          <ion-button (click)="testLogout()">
+          <ion-button *ngIf="sessionService.getIsLogin() == true" (click)="memberLogout()">
             <ion-icon slot="start" name="arrow-forward"></ion-icon>
             Logout
           </ion-button>
