@@ -20,8 +20,13 @@ export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (this.sessionService.getIsLogin()) {
+      if (route.url[0].path == "login") {
+        this.router.navigate(["/tabs/tab1"]);
+      }
       member: Member;
       let member = this.sessionService.getCurrentMember();
+      return true;
+    } else if (route.url[0].path == "login") {
       return true;
     }
     else {
@@ -29,8 +34,6 @@ export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
       return false;
     }
   }
-
-
 
   canDeactivate(
     component: unknown,

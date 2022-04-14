@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
 	}
 
   navigateToHomePage() {
-    this.router.navigate(["/tabs/tab1"])
+    this.router.navigate(["/tabs/tab1"]);
   }
 
 	back() {
