@@ -82,8 +82,11 @@ const routes: Routes = [
   {
     path: 'tabs/tab2/viewSet/:setId',
     loadChildren: () => import('./collect/view-set/view-set.module').then( m => m.ViewSetPageModule)
+  },
+  {
+    path: 'tabs/tab3/viewListing/:listingId',
+    loadChildren: () => import('./trade/view-listing/view-listing.module').then( m => m.ViewListingPageModule)
   }
-
 
 ];
 @NgModule({
