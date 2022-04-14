@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 
 import { SessionService } from '../services/session.service';
 import { Member } from '../models/member';
+import { CreateMemberReq } from '../models/create-member-req';
 
 
 const httpOptions = {
@@ -26,6 +27,21 @@ export class MemberService {
       catchError(this.handleError)
     );
   }
+
+  createNewMember(newMember: Member): Observable<number> {
+    let createMemberReq: CreateMemberReq = new CreateMemberReq(newMember);
+
+    return this.httpClient.put<number>(this.baseUrl, createMemberReq, httpOptions).pipe (
+      catchError(this.handleError)
+    );
+  }
+
+  retrieveMemberId(username: string): Observable<number> {
+		return this.httpClient.get<number>(this.baseUrl + "/retrieveMemberId/" + username).pipe
+		(
+			catchError(this.handleError)
+		);
+	}
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { SessionService } from '../../services/session.service';
@@ -14,16 +14,22 @@ import { Member } from '../../models/member';
 })
 export class SignUpPage implements OnInit {
   submitted: boolean;
-  username: string;
-  password: string;
-  loginError: boolean;
-  errorMessage: string;
+  newMember: Member;
+
+  resultSuccess: boolean;
+  resultError: boolean;
+  message: string;
   type: boolean = true;
 
   constructor(private router: Router,
     public sessionService: SessionService,
-    private memberService: MemberService) {
+    private memberService: MemberService,
+    private activatedRoute: ActivatedRoute) {
       this.submitted = false;
+      this.newMember = new Member();
+
+      this.resultSuccess = false;
+      this.resultError = false;
     }
 
   ngOnInit()  {
@@ -31,56 +37,33 @@ export class SignUpPage implements OnInit {
 
   clear()
   {
-		this.username = "";
-		this.password = "";
+		this.submitted = false;
+    this.newMember = new Member();
 	}
 
-  memberLogin(memberLoginForm: NgForm) {
+  create(createMemberForm: NgForm) {
+    this.submitted = true;
 
-		this.submitted = true;
-
-		if (memberLoginForm.valid) {
-			this.sessionService.setUsername(this.username);
-			this.sessionService.setPassword(this.password);
-
-      this.memberService.memberLogin(this.username, this.password).subscribe({
+    if (createMemberForm.valid) {
+      this.memberService.createNewMember(this.newMember).subscribe({
         next:(response)=>{
-          let member: Member = response;
+          let newMemberId: number = response;
+          this.resultSuccess = true;
+          this.resultError = false;
+          this.message = "New member " + newMemberId + " created successfully";
 
-					if (member != null) {
-						this.sessionService.setIsLogin(true);
-						this.sessionService.setCurrentMember(member);
-						this.loginError = false;
-            this.navigateToHomePage();
-					}
-					else
-          {
-						this.loginError = true;
-					}
+          this.newMember = new Member();
+          this.submitted = false;
+          createMemberForm.reset();
         },
         error:(error)=>{
-          this.loginError = true;
-					this.errorMessage = 'Invalid login credential: Username does not exist or invalid password!'
+          this.resultError = true;
+          this.resultSuccess = false;
+          this.message = "An error has occurred while creating new Member account: " + error;
         }
       });
-		}
-		else
-    {
-		}
-	}
-
-  memberLogout(): void {
-		this.sessionService.setIsLogin(false);
-		this.sessionService.setCurrentMember(null);
-	}
-
-  navigateToHomePage() {
-    this.router.navigate(["/tabs/tab1"])
+    }
   }
-
-	back() {
-		this.router.navigate(["/login"]);
-	}
 
   changeType() {
     this.type = !this.type;

@@ -12,6 +12,7 @@ export class Member {
   password: string | undefined;
   emailAddr: string | undefined;
   profilePic: string | undefined;
+  phoneNumber: string | undefined;
   defaultShippingAddress: string | undefined;
 
   collection: Collection | undefined;
@@ -29,7 +30,8 @@ export class Member {
     password?: string , 
     emailAddr?: string , 
     profilePic?: string , 
-    defaultShippingAddress?: string
+    defaultShippingAddress?: string,
+    phoneNumber?: string
 ) {
     this.userId = userId
     this.userName = userName
@@ -37,6 +39,7 @@ export class Member {
     this.emailAddr = emailAddr
     this.profilePic = profilePic
     this.defaultShippingAddress = defaultShippingAddress
+    this.phoneNumber = phoneNumber
   }
   
 }

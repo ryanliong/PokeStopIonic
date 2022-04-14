@@ -44,4 +44,12 @@ export class SessionService {
   setPassword(password: string | undefined): void  {
     sessionStorage['password'] = password;
   }
+
+  getMemberId(): number {
+    return sessionStorage['memberId']
+  }
+
+  setMemberId(memberId: number | undefined): void {
+    sessionStorage['memberId'] = memberId;
+  }
 }

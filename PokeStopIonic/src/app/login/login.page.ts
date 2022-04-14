@@ -43,6 +43,17 @@ export class LoginPage implements OnInit {
 			this.sessionService.setUsername(this.username);
 			this.sessionService.setPassword(this.password);
 
+      this.memberService.retrieveMemberId(this.username).subscribe({
+        next:(response)=>{
+          let memberId: number = response;
+
+          if (memberId != null) {
+            this.sessionService.setMemberId(memberId);
+            console.log("current Member Id stored: " + memberId);
+          }
+        }
+      });
+
       this.memberService.memberLogin(this.username, this.password).subscribe({
         next:(response)=>{
           let member: Member = response;
