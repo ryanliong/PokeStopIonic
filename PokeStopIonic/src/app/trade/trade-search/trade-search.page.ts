@@ -6,6 +6,7 @@ import { ListingService } from 'src/app/services/listing.service';
 import { Listing } from 'src/app/models/listing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ListingStatus } from 'src/app/models/listing-status';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-trade-search',
@@ -15,12 +16,14 @@ import { ListingStatus } from 'src/app/models/listing-status';
 export class TradeSearchPage implements OnInit {
   listings: Listing[] | null;
   unsoldEnum = "UNSOLD";
+  memberId: number | null;
 
-  constructor(private listingService: ListingService, private router: Router) {
+  constructor(private listingService: ListingService, private router: Router, private sessionService: SessionService) {
     this.listings = new Array();
   }
 
   ngOnInit() {
+    this.memberId = this.sessionService.getMemberId();
 
     this.listingService.getListings().subscribe({
       next:(response) => {

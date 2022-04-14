@@ -3,10 +3,83 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="trade-menu"></ion-menu-button>
     </ion-buttons>
-    <ion-title>myListings</ion-title>
+    <ion-title>My Listings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-button (click)="addListing($event, memberId)">
+    Create New Listing
+  </ion-button>
+  
+  <div>
+    <h5>My Unsold Listings</h5>
+  </div>
+  <ion-card (click)="editListing($event, listing)" *ngFor="let listing of listings">
+    <div *ngIf="listing.listingStatus === unsoldEnum && listing.memberEntity.userId == memberId">
+      <ion-img src="{{listing.listingPic}}" style="width: 20%; float: left;"></ion-img>
+      <div style="padding-left: 25%;">
+      <ion-card-header> 
+        <ion-card-title>
+          {{listing.listingName}}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{listing.listingDesc}}
+        <br>
+        ${{listing.listingPrice}}
+        <br>
+        Status: {{listing.listingStatus}}
+      </ion-card-content>
+      </div>
+    </div>
+  </ion-card>
+  <br>
 
+  <div>
+    <h5>My Sold Listings</h5>
+  </div>
+  <ion-card (click)="editListing($event, listing)" *ngFor="let listing of listings">
+    <div *ngIf="listing.listingStatus === soldEnum && listing.memberEntity.userId == memberId">
+      <ion-img src="{{listing.listingPic}}" style="width: 20%; float: left;"></ion-img>
+      <div style="padding-left: 25%;">
+      <ion-card-header> 
+        <ion-card-title>
+          {{listing.listingName}}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{listing.listingDesc}}
+        <br>
+        ${{listing.listingPrice}}
+        <br>
+        Status: {{listing.listingStatus}}
+      </ion-card-content>
+      </div>
+    </div>
+  </ion-card>
+  <br>
+
+  <div>
+    <h5>My Blocked Listings</h5>
+  </div>
+  <ion-card (click)="editListing($event, listing)" *ngFor="let listing of listings">
+    <div *ngIf="listing.listingStatus === blockedEnum && listing.memberEntity.userId == memberId">
+      <ion-img src="{{listing.listingPic}}" style="width: 20%; float: left;"></ion-img>
+      <div style="padding-left: 25%;">
+      <ion-card-header> 
+        <ion-card-title>
+          {{listing.listingName}}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{listing.listingDesc}}
+        <br>
+        ${{listing.listingPrice}}
+        <br>
+        Status: {{listing.listingStatus}}
+      </ion-card-content>
+      </div>
+    </div>
+  </ion-card>
 </ion-content>
