@@ -25,21 +25,16 @@ export class ViewSetPage implements OnInit {
     this.setToView = new SetEntity();
     this.cardsToView = new Array();
     this.cardsInCollection = new Array();
-   }
+  }
 
   ngOnInit() {
-     this.refreshSet();
+    this.refreshSet();
   }
 
   refreshSet() {
     this.setId = parseInt(this.activatedRoute.snapshot.paramMap.get('setId'));
 
-    //enter real way to get memberId here
-    this.memberId = 1;
-
-    
-    
-    this.collectionService.getCollectionByMemberId(this.memberId).subscribe({
+    this.collectionService.getCollectionByMemberId().subscribe({
       next:(response)=>{
         this.cardsInCollection = response;
 
@@ -50,7 +45,7 @@ export class ViewSetPage implements OnInit {
             
             this.showOwnedCards();
 
-            this.wishlistService.getWishlistByMemberId(this.memberId).subscribe({
+            this.wishlistService.getWishlistByMemberId().subscribe({
               next:(response)=> {
                 this.cardsInWishlist = response;
 
@@ -134,10 +129,11 @@ export class ViewSetPage implements OnInit {
   addToWishlist(event, card) {
     this.wishlistService.addCardToWishlist(card.cardId).subscribe({
       next:(response) => {
-        this.presentCollectionAlert("Card was added to wishlist!");
+        this.presentWishlistAlert("Card was added to wishlist!");
+        this.refreshSet();
       },
       error:(error)=> {
-        this.presentCollectionAlert("Card already in wishlist!");
+        this.presentWishlistAlert("Card already in wishlist!");
       }
     })
   }
