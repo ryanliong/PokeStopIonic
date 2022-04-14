@@ -1,8 +1,11 @@
-import { AuthenticationService } from '../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController, LoadingController } from '@ionic/angular';
+
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+
+import { SessionService } from '../services/session.service';
+import { MemberService } from '../services/member.service';
+import { Member } from '../models/member';
 
 @Component({
   selector: 'app-login',
@@ -10,54 +13,87 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  credentials: FormGroup;
+  submitted: boolean;
+  username: string;
+  password: string;
+  loginError: boolean;
+  errorMessage: string;
+  type: boolean = true;
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthenticationService,
-    private alertController: AlertController,
-    private router: Router,
-    private loadingController: LoadingController
-  ) {}
+  constructor(private router: Router,
+    public sessionService: SessionService,
+    private memberService: MemberService) {
+      this.submitted = false;
+    }
 
-  ngOnInit() {
-    this.credentials = this.fb.group({
-      username: ['member1', [Validators.required]],
-      password: ['password', [Validators.required, Validators.minLength(6)]],
-    });
+  ngOnInit()  {
+	}
+
+  clear()
+  {
+		this.username = "";
+		this.password = "";
+	}
+
+  memberLogin(memberLoginForm: NgForm) {
+
+		this.submitted = true;
+
+		if (memberLoginForm.valid) {
+			this.sessionService.setUsername(this.username);
+			this.sessionService.setPassword(this.password);
+
+      this.memberService.retrieveMemberId(this.username).subscribe({
+        next:(response)=>{
+          let memberId: number = response;
+
+          if (memberId != null) {
+            this.sessionService.setMemberId(memberId);
+            console.log("current Member Id stored: " + memberId);
+          }
+        }
+      });
+
+      this.memberService.memberLogin(this.username, this.password).subscribe({
+        next:(response)=>{
+          let member: Member = response;
+
+					if (member != null) {
+						this.sessionService.setIsLogin(true);
+						this.sessionService.setCurrentMember(member);
+						this.loginError = false;
+            this.navigateToHomePage();
+					}
+					else
+          {
+						this.loginError = true;
+					}
+        },
+        error:(error)=>{
+          this.loginError = true;
+					this.errorMessage = 'Invalid login credential: Username does not exist or invalid password!'
+        }
+      });
+		}
+		else
+    {
+		}
+	}
+
+  memberLogout(): void {
+		this.sessionService.setIsLogin(false);
+		this.sessionService.setCurrentMember(null);
+	}
+
+  navigateToHomePage() {
+    this.router.navigate(["/tabs/tab1"])
   }
 
-  async login() {
-    const loading = await this.loadingController.create();
-    await loading.present();
+	back() {
+		this.router.navigate(["/login"]);
+	}
 
-    this.authService.login(this.credentials.value).subscribe(
-      async (res) => {
-        await loading.dismiss();
-        this.router.navigateByUrl('/tabs/tabs1/shop-home', { replaceUrl: true });
-      },
-      async (res) => {
-        await loading.dismiss();
-        const alert = await this.alertController.create({
-          header: 'Login failed',
-          message: res.error.error,
-          buttons: ['OK'],
-        });
-
-        await alert.present();
-      }
-    );
-  }
-
-  navigateToSignUp() {
-    this.router.navigateByUrl('/sign-up');
-  }
-
-  get username() {
-    return this.credentials.get('username');
-  }
-
-  get password() {
-    return this.credentials.get('password');
+  changeType() {
+    this.type = !this.type;
   }
 }

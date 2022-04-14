@@ -1,7 +1,8 @@
-import { AuthenticationService } from '../services/authentication.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-tab2',
@@ -11,7 +12,7 @@ import { MenuController } from '@ionic/angular';
 export class Tab2Page {
 
   paneEnabled = true;
-  constructor(private menuController: MenuController, private router: Router, private authService: AuthenticationService) {}
+  constructor(private menuController: MenuController, public sessionService: SessionService, private router: Router) {}
 
   ionViewWillEnter() {
     this.paneEnabled = true;
@@ -22,10 +23,11 @@ export class Tab2Page {
     this.paneEnabled = false;
   }
 
-  async testLogout() {
-    await this.authService.logout();
-    this.router.navigate(['/homepage']);
-  }
+  memberLogout(): void {
+		this.sessionService.setIsLogin(false);
+		this.sessionService.setCurrentMember(null);
+    this.router.navigate(['/login']);
+	}
 
   navigateToSettings() {
     this.router.navigate(['/tabs/tab1/settings']);

@@ -25,7 +25,7 @@ export class Member {
 
 
   constructor(
-    userId?: number , 
+    userId?: number ,
     userName?: string , 
     password?: string , 
     emailAddr?: string , 
