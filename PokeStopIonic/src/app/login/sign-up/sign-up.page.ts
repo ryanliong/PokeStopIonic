@@ -68,4 +68,8 @@ export class SignUpPage implements OnInit {
   changeType() {
     this.type = !this.type;
   }
+
+  goBackToLoginPage() {
+    this.router.navigate(['/login']);
+  }
 }
