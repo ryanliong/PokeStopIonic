@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Collection } from '../models/collection';
 import { Card } from '../models/card';
+import { UpdateCollection } from '../models/update-collection';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,16 @@ export class CollectionService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCollectionByMemberId(memberId : number): Observable<Card[]> {
+  getCollectionByMemberId(memberId: number): Observable<Card[]> {
     return this.httpClient.get<Card[]>(this.baseUrl + "/retrieveCollection/" + memberId).pipe(catchError(this.handleError));
+  }
+
+  addCardToCollection(cardId: number): Observable<number> {
+    // update memberId here
+    let memberId = 1;
+    let updateCollection: UpdateCollection = new UpdateCollection(cardId,memberId);
+
+    return this.httpClient.post<number>(this.baseUrl + "/addCard", updateCollection).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse)

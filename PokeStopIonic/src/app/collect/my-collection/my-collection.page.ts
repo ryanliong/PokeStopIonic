@@ -17,18 +17,30 @@ export class MyCollectionPage implements OnInit {
   cardsToView: Card[];
   allSetsArray: number[];
   totalCards: number;
+  currentCards: number;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private collectionService: CollectionService, private setService: SetService) {
     this.cardsToView = new Array;
+    this.totalCards = 0;
+    this.currentCards = 0;
   }
 
   ngOnInit() {
+    
+    this.loadData();
+
+  }
+
+  loadData() {
     //enter real way to get memberId here
     this.memberId = 1;
-    
+
     this.collectionService.getCollectionByMemberId(this.memberId).subscribe({
       next:(response)=>{
         this.cardsToView = response;
+        this.currentCards = this.cardsToView.length;
+        this.viewTotal();
+        
       },
       error:(error) => {
         console.log('ViewCollectionPage' + error);
@@ -36,27 +48,25 @@ export class MyCollectionPage implements OnInit {
     }) 
   }
 
-  // viewTotal() {
-  //   let allSets = new Set();
+  async viewTotal() {
+    let allSets = new Set();
     
-  //   for (let i = 0; i <= this.cardsToView.length; i++) {
-  //     allSets.add(this.cardsToView[i].setEntity.setId);
-  //   }
+    for (var c of this.cardsToView) {
+      allSets.add(c.setEntity.setId);
+    }
 
-  //   this.allSetsArray = <number[]> Array.from(allSets);
+    this.allSetsArray = <number[]> Array.from(allSets);
 
-  //   for (let i = 0; i <= allSets.size; i++) {
-  //     this.setService.getSetById(this.allSetsArray[i]).subscribe({
-  //     next:(response)=>{
-  //       this.totalCards += response.cardEntities.length;
-  //     },
-  //     error:(error) => {
-  //       console.log('ViewCollectionPage' + error);
-  //     }
-  //   })
-  //   }
-
-  //   console.log(this.totalCards);
-  // }
+    for (var s of this.allSetsArray) {
+      this.setService.getSetById(s).subscribe({
+        next:(response) => {
+          this.totalCards = this.totalCards + response.cardEntities.length;
+        },
+        error:(error) => {
+          console.log('ViewCollectionPage' + error);
+      }
+      })
+    }
+  }
 
 }

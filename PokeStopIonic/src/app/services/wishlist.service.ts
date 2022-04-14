@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Card } from '../models/card';
+import { UpdateCollection } from '../models/update-collection';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,14 @@ export class WishlistService {
 
   getWishlistByMemberId(memberId : number): Observable<Card[]> {
     return this.httpClient.get<Card[]>(this.baseUrl + "/retrieveWishlist/" + memberId).pipe(catchError(this.handleError));
+  }
+
+  addCardToWishlist(cardId: number): Observable<number> {
+    // update memberId here
+    let memberId = 1;
+    let updateCollection: UpdateCollection = new UpdateCollection(cardId,memberId);
+
+    return this.httpClient.post<number>(this.baseUrl + "/addCard", updateCollection).pipe(catchError(this.handleError));
   }
 
 
