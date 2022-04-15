@@ -104,8 +104,8 @@ const routes: Routes = [
     loadChildren: () => import('./trade/view-listing/view-listing.module').then(m => m.ViewListingPageModule)
   },
   {
-    path: 'tabs/tab3/addListing/:memberId',
-    loadChildren: () => import('./trade/add-listing/add-listing.module').then(m => m.AddListingPageModule)
+    path: 'tabs/tab3/addListing/:listingId',
+    loadChildren: () => import('./trade/add-listing/add-listing.module').then( m => m.AddListingPageModule)
   },
   {
     path: 'tabs/tab3/editListing/:listingId',

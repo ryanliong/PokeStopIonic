@@ -8,10 +8,6 @@ const routes: Routes = [
     component: Tab3Page,
     children: [
       {
-        path: 'trade-home',
-        loadChildren: () => import('../trade/trade-home/trade-home.module').then(m => m.TradeHomePageModule)
-      },
-      {
         path: 'trade-search',
         loadChildren: () => import('../trade/trade-search/trade-search.module').then(m => m.TradeSearchPageModule)
       },
@@ -21,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'trade-home',
+        redirectTo: 'trade-search',
         pathMatch: 'full'
       }
     ]

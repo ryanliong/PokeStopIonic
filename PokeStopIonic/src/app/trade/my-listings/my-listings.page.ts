@@ -23,7 +23,6 @@ export class MyListingsPage implements OnInit {
 
   ngOnInit() {
     this.routerActive.paramMap.subscribe(paramMap => {
-      console.log('router active')
       if (this.router.url === "/tabs/tab3/my-listings") {
 
         this.memberId = this.sessionService.getMemberId();
@@ -44,7 +43,7 @@ export class MyListingsPage implements OnInit {
     this.router.navigate(["/tabs/tab3/editListing/" + listing.listingId]);
   }
 
-  addListing(event, memberId) {
-    this.router.navigate(["/tabs/tab3/addListing/" + memberId]);
+  addListing(event) {
+    this.router.navigate(["/tabs/tab3/addListing/" + 0]);
   }
 }

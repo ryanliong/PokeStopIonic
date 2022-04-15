@@ -44,7 +44,6 @@ export class EditListingPage implements OnInit {
         console.log('ViewListingPage' + error);
       }
     })
-
   }
 
   back()
@@ -65,7 +64,7 @@ export class EditListingPage implements OnInit {
   }
 
   update(event) {
-   
+    this.router.navigate(["/tabs/tab3/addListing/" + this.listingId]);
   }
 
   delete(event) {

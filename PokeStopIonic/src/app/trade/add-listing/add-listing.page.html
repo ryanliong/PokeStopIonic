@@ -5,7 +5,8 @@
         <ion-icon slot="start" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Create New Listing</ion-title>
+    <ion-title *ngIf="listingId == 0">Create New Listing</ion-title>
+    <ion-title *ngIf="listingId != 0">Update Listing</ion-title>
     </ion-toolbar> 
 </ion-header>
 
@@ -61,7 +62,7 @@
 
           <ion-item>
             <ion-label><b>Listing Price</b></ion-label>
-            <ion-input type="text" id="listingPrice" name="listingPrice" [(ngModel)]="listingToAdd.listingPrice"
+            <ion-input type="number" id="listingPrice" name="listingPrice" [(ngModel)]="listingToAdd.listingPrice"
               required="false" #listingPrice="ngModel"></ion-input>
           </ion-item>
 
@@ -77,8 +78,11 @@
         <ion-button (click)="clear()">
           Clear
         </ion-button>
-        <ion-button type="submit" ion-button block>
+        <ion-button type="submit" ion-button block *ngIf="listingId == 0" color="success">
           Create
+        </ion-button>
+        <ion-button type="submit" ion-button block *ngIf="listingId != 0" color="success">
+          Update
         </ion-button>
       </ion-card-content>
 

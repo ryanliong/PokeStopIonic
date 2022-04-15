@@ -8,9 +8,13 @@
 </ion-header>
 
 <ion-content>
-  <div>
-  <h5>Listings</h5>
-  </div>
+  <ion-searchbar
+    placeholder='Search Listing'
+    [(ngModel)]="searchQuery"
+    showCancelButton="focus"
+    animated
+  >
+  </ion-searchbar>
   <ion-card (click)="viewListing($event, listing)" *ngFor="let listing of listings">
     <div *ngIf="listing.listingStatus === unsoldEnum && listing.memberEntity.userId != memberId">
       <ion-img src="{{listing.listingPic}}" style="width: 20%; float: left;"></ion-img>
@@ -20,10 +24,8 @@
           {{listing.listingName}}
         </ion-card-title>
       </ion-card-header>
-      <ion-card-content>
-        {{listing.listingDesc}}
-        <br>
-        ${{listing.listingPrice}}
+      <ion-card-content style="float: right;">
+        <b style="font-size: 1.5rem;">${{listing.listingPrice}}</b>
       </ion-card-content>
       </div>
     </div>
