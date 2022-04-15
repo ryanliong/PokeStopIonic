@@ -23,7 +23,6 @@ export class ProductDetailsPage implements OnInit {
     this.getCartByMember();
   }
 
-
   filter() {
     // return this.orderItems.filter(orderItem => orderItems[orderItem.orderItemId] {
     //   return object['productId'] == this.product.productId;
@@ -63,7 +62,6 @@ export class ProductDetailsPage implements OnInit {
       this.productQty--;
     }
   }
-
 
   async addToCart() {
     console.log(this.orderItems);

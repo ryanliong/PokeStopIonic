@@ -1,5 +1,5 @@
 ion-content {
-    --padding-top: 20px;
+    --padding-top: 200px;
     --background: url('https://i.pinimg.com/736x/82/be/f9/82bef9a3a6cbcf42cb692c59eaf3cf0c.jpg') 0 0/100% 100% no-repeat;
 }
 
@@ -20,9 +20,8 @@ ion-footer {
 }
 
 ion-fab-button {
+    --padding-right: 20px;
     float: right;
-    padding-right: 8px;
-    font-size: 0.8rem;
 }
 
 .input-group {
