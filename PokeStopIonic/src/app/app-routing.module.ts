@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./shop/shop-search/shop-search.module').then( m => m.ShopSearchPageModule)
   },
   {
+    path: 'product-details',
+    loadChildren: () => import('./shop/product-details/product-details.module').then( m => m.ProductDetailsPageModule)
+  },
+  {
     path: 'collect-home',
     loadChildren: () => import('./collect/collect-home/collect-home.module').then( m => m.CollectHomePageModule)
   },
