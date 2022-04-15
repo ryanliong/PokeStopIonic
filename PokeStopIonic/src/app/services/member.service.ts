@@ -7,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { SessionService } from '../services/session.service';
 import { Member } from '../models/member';
 import { CreateMemberReq } from '../models/create-member-req';
+import { UpdateMemberReq } from '../models/update-member-req';
 
 
 const httpOptions = {
@@ -42,6 +43,14 @@ export class MemberService {
 			catchError(this.handleError)
 		);
 	}
+
+  udpateMember(memberToUpdate: Member): Observable<any> {
+    let updateMemberReq: UpdateMemberReq = new UpdateMemberReq(memberToUpdate);
+
+    return this.httpClient.post<any>(this.baseUrl, updateMemberReq, httpOptions).pipe (
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
