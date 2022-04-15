@@ -34,14 +34,29 @@ export class ListingService {
 		);
 	}
 
+	updateListing(listingToUpdate : Listing): Observable<Listing> {
+		return this.httpClient.post<Listing>(this.baseUrl, listingToUpdate, httpOptions).pipe
+		(
+			catchError(this.handleError)
+		);
+	}
+
 	createNewListing(listingToAdd: Listing, memberToAdd: Member): Observable<number>
 	{		
 		let createListingReq: CreateListingReq = new CreateListingReq(listingToAdd, memberToAdd);
 		
 		return this.httpClient.put<number>(this.baseUrl, createListingReq, httpOptions).pipe
 		(
-		catchError(this.handleError)
+			catchError(this.handleError)
 		);
+	}
+
+	deleteListing(listingId: number): Observable<any>
+	{
+	  return this.httpClient.delete<any>(this.baseUrl + "/" + listingId ).pipe
+	  (
+		catchError(this.handleError)
+	  );
 	}
 
 	private handleError(error: HttpErrorResponse)
