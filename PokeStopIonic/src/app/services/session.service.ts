@@ -37,6 +37,14 @@ export class SessionService {
     sessionStorage['username'] = username;
   }
 
+  getEmail(): string {
+    return sessionStorage['email'];
+  }
+
+  setEmail(email: string | undefined): void  {
+    sessionStorage['email'] = email;
+  }
+
   getPassword(): string  {
     return sessionStorage['password'];
   }

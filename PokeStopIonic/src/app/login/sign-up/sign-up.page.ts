@@ -6,6 +6,9 @@ import { NgForm } from '@angular/forms';
 import { SessionService } from '../../services/session.service';
 import { MemberService } from '../../services/member.service';
 import { Member } from '../../models/member';
+import { Collection } from 'src/app/models/collection';
+import { Wishlist } from 'src/app/models/wishlist';
+import { Cart } from 'src/app/models/cart';
 
 @Component({
   selector: 'app-sign-up',
@@ -44,6 +47,10 @@ export class SignUpPage implements OnInit {
   create(createMemberForm: NgForm) {
     this.submitted = true;
 
+    this.newMember.collection = new Collection();
+    this.newMember.cart = new Cart();
+    this.newMember.wishlist = new Wishlist();
+
     if (createMemberForm.valid) {
       this.memberService.createNewMember(this.newMember).subscribe({
         next:(response)=>{
@@ -67,5 +74,9 @@ export class SignUpPage implements OnInit {
 
   changeType() {
     this.type = !this.type;
+  }
+
+  goBackToLoginPage() {
+    this.router.navigate(['/login']);
   }
 }
