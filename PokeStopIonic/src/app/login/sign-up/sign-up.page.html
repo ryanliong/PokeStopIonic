@@ -1,109 +1,175 @@
 <ion-content [fullscreen]="true">
-	<img alt="logo" height=65 src="../../assets/PokeStop.png" > 
+  <img alt="logo" height="65" src="../../assets/PokeStop.png" />
 </ion-content>
 
 <ion-footer class="ion-no-border">
-	<ion-row>
-		<ion-list lines="full">
+  <ion-row>
+    <ion-list lines="full">
       <ion-fab-button color="tertiary" (click)="goBackToLoginPage()">
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-fab-button>
-			<ion-list-header class="ion-margin">
-				<ion-label>Sign Up</ion-label>
-			</ion-list-header>
-			<ion-item-group class="ion-margin-horizontal">
-							
-				<ion-card>
-					
-					<ion-card-content>
-					
-					<form #createMemberForm="ngForm" (ngSubmit)="create(createMemberForm)" >
-            
-            <div *ngIf="resultSuccess == true" style="color: blue;">
-              {{message}}
-            </div>
-    
-            <div *ngIf="resultError == true" style="color: red;">
-              {{message}}
-            </div>
+      <ion-list-header class="ion-margin">
+        <ion-label>Sign Up</ion-label>
+      </ion-list-header>
+      <ion-item-group class="ion-margin-horizontal">
+        <ion-card>
+          <ion-card-content>
+            <form
+              #createMemberForm="ngForm"
+              (ngSubmit)="create(createMemberForm)"
+            >
+              <div *ngIf="resultSuccess == true" style="color: blue">
+                {{message}}
+              </div>
 
-						<div style="color: red;">
-						
-							<div *ngIf="username.invalid && (username.dirty || username.touched || submitted)" class="errorText">
-								<div *ngIf="username.errors.required">
-									Username is required.
-								</div>
-								<div *ngIf="username.errors.minlength">
-									Username must be at least 5 characters long.
-								</div>
-								<div *ngIf="username.errors.maxlength">
-									Username cannot exceed 32 characters.
-								</div>
-							</div>
-							
-							<div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
-								<div *ngIf="password.errors.required">
-									Password is required.
-								</div>
-								<div *ngIf="password.errors.maxlength">
-									Password cannot exceed 32 characters.
-								</div>
-							</div>
+              <div *ngIf="resultError == true" style="color: red">
+                {{message}}
+              </div>
 
-              <div *ngIf="emailAddr.invalid && (emailAddr.dirty || emailAddr.touched || submitted)" class="errorText">
-								<div *ngIf="emailAddr.errors.required">
-									Email Address is required.
-								</div>
-							</div>
+              <div style="color: red">
+                <div
+                  *ngIf="username.invalid && (username.dirty || username.touched || submitted)"
+                  class="errorText"
+                >
+                  <div *ngIf="username.errors.required">
+                    Username is required.
+                  </div>
+                  <div *ngIf="username.errors.minlength">
+                    Username must be at least 5 characters long.
+                  </div>
+                  <div *ngIf="username.errors.maxlength">
+                    Username cannot exceed 32 characters.
+                  </div>
+                </div>
 
-              <div *ngIf="shippingAddr.invalid && (shippingAddr.dirty || shippingAddr.touched || submitted)" class="errorText">
-								<div *ngIf="shippingAddr.errors.required">
-									Default Shipping Address is required.
-								</div>
-							</div>
-              							
-							
-						</div>
-			
-						<ion-list>
-			
-							<ion-item>
-								<ion-label position="floating">Username</ion-label>
-								<ion-input type="text" id="username" name="username" [(ngModel)]="newMember.userName" minlength="4" maxlength="32" required="true" #username="ngModel"></ion-input>
-							</ion-item>
-			
-							<ion-item>
-								<ion-icon [name]="type ? 'eye-outline' : 'eye-off-outline'" slot="end" color="medium" (click)="changeType()"></ion-icon>
-								<ion-label position="floating">Password</ion-label>
-								<ion-input [type]="type ? 'password' : 'text'" id="password" name="password" [(ngModel)]="newMember.password" minlength="4" maxlength="32" required="true" #password="ngModel"></ion-input>
-							</ion-item>
+                <div
+                  *ngIf="password.invalid && (password.dirty || password.touched || submitted)"
+                  class="errorText"
+                >
+                  <div *ngIf="password.errors.required">
+                    Password is required.
+                  </div>
+                  <div *ngIf="password.errors.maxlength">
+                    Password cannot exceed 32 characters.
+                  </div>
+                </div>
 
-              <ion-item>
-								<ion-label position="floating">Email Address</ion-label>
-								<ion-input type="email" id="emailAddr" name="emailAddr" [(ngModel)]="newMember.emailAddr" minlength="4" maxlength="32" required="true" #emailAddr="ngModel"></ion-input>
-							</ion-item>
+                <div
+                  *ngIf="emailAddr.invalid && (emailAddr.dirty || emailAddr.touched || submitted)"
+                  class="errorText"
+                >
+                  <div *ngIf="emailAddr.errors.required">
+                    Email Address is required.
+                  </div>
+                </div>
 
-              <ion-item>
-								<ion-label position="floating">Default Shipping Address</ion-label>
-								<ion-input type="text" id="shippingAddr" name="shippingAddr" [(ngModel)]="newMember.defaultShippingAddress" required="true" #shippingAddr="ngModel"></ion-input>
-							</ion-item>
-							
-							<ion-item>
-								<ion-button (click)="clear()">
-									Clear
-								</ion-button>
-								<ion-button type="submit" color="danger">
-									Register
-								</ion-button>
-							</ion-item>
-			
-						</ion-list>
-					</form>
-					</ion-card-content>
-					
-				</ion-card>
-			</ion-item-group>
-		</ion-list>
-	</ion-row>
+                <div
+                  *ngIf="shippingAddr.invalid && (shippingAddr.dirty || shippingAddr.touched || submitted)"
+                  class="errorText"
+                >
+                  <div *ngIf="shippingAddr.errors.required">
+                    Default Shipping Address is required.
+                  </div>
+                </div>
+
+                <div
+                  *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched || submitted)"
+                  class="errorText"
+                >
+                  <div *ngIf="phoneNumber.errors.required">
+                    Phone Number is required.
+                  </div>
+                </div>
+              </div>
+
+              <ion-list>
+                <ion-item>
+                  <ion-label position="floating">Username</ion-label>
+                  <ion-input
+                    type="text"
+                    id="username"
+                    name="username"
+                    [(ngModel)]="newMember.userName"
+                    minlength="4"
+                    maxlength="32"
+                    required="true"
+                    #username="ngModel"
+                  ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-icon
+                    [name]="type ? 'eye-outline' : 'eye-off-outline'"
+                    slot="end"
+                    color="medium"
+                    (click)="changeType()"
+                  ></ion-icon>
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input
+                    [type]="type ? 'password' : 'text'"
+                    id="password"
+                    name="password"
+                    [(ngModel)]="newMember.password"
+                    minlength="4"
+                    maxlength="32"
+                    required="true"
+                    #password="ngModel"
+                  ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Phone Number</ion-label>
+                  <ion-input
+                    type="number"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    [(ngModel)]="newMember.phoneNumber"
+                    max="99999999"
+                    min="00000000"
+                    required="true"
+                    #phoneNumber="ngModel"
+                  ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Email Address</ion-label>
+                  <ion-input
+                    type="email"
+                    id="emailAddr"
+                    name="emailAddr"
+                    [(ngModel)]="newMember.emailAddr"
+                    minlength="4"
+                    maxlength="32"
+                    required="true"
+                    #emailAddr="ngModel"
+                  ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating"
+                    >Default Shipping Address</ion-label
+                  >
+                  <ion-input
+                    type="text"
+                    id="shippingAddr"
+                    name="shippingAddr"
+                    [(ngModel)]="newMember.defaultShippingAddress"
+                    required="true"
+                    #shippingAddr="ngModel"
+                  ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-button (click)="clear()"> Clear </ion-button>
+                  <ion-button type="submit" color="danger">
+                    Register
+                  </ion-button>
+                </ion-item>
+              </ion-list>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-item-group>
+    </ion-list>
+  </ion-row>
 </ion-footer>
-
