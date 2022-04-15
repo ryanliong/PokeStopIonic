@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 
 import { SessionService } from '../services/session.service';
+import { CartPage } from '../shop/cart/cart.page';
 
 @Component({
   selector: 'app-tab1',
@@ -12,7 +13,7 @@ import { SessionService } from '../services/session.service';
 export class Tab1Page {
 
   paneEnabled = true;
-  constructor(private menuController: MenuController, public sessionService: SessionService, private router: Router) {}
+  constructor(private menuController: MenuController, public sessionService: SessionService, private router: Router, private modalController: ModalController) { }
 
   ionViewWillEnter() {
     this.paneEnabled = true;
@@ -24,13 +25,21 @@ export class Tab1Page {
   }
 
   memberLogout(): void {
-		this.sessionService.setIsLogin(false);
-		this.sessionService.setCurrentMember(null);
+    this.sessionService.setIsLogin(false);
+    this.sessionService.setCurrentMember(null);
     this.router.navigate(['/login']);
-	}
+  }
 
   navigateToSettings() {
     this.router.navigate(['/tabs/tab1/settings']);
   }
+
+  async openCart() {
+    const modal = await this.modalController.create({
+      component: CartPage
+    });
+    await modal.present();
+  }
+
 
 }

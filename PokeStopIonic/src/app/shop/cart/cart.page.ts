@@ -6,6 +6,7 @@ import { Product } from 'src/app/models/product';
 import { Cart } from 'src/app/models/cart';
 import { AlertController, ModalController } from '@ionic/angular';
 import { CheckoutDetailsPage } from '../checkout-details/checkout-details.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -25,7 +26,7 @@ export class CartPage implements OnInit {
 
   subTotal = 0;
 
-  constructor(private cartService: CartService, private orderItemService: OrderItemService, private orderService: OrderService, private modalController: ModalController, private alertController: AlertController) { }
+  constructor(private cartService: CartService, private orderItemService: OrderItemService, private orderService: OrderService, private modalController: ModalController, private alertController: AlertController, private router: Router) { }
 
   ngOnInit() {
     this.getCartByMember();

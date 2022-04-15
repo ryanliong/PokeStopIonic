@@ -8,5 +8,54 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Filter by Order Status</ion-label>
+    <ion-select
+      okText="Ok"
+      cancelText="Cancel"
+      value="0"
+      (ionChange)="filterOrder($event);"
+    >
+      <ion-select-option selected value="0">All</ion-select-option>
+      <ion-select-option *ngFor="let orderStatus of orderStatuses">
+        {{orderStatus}}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
 
+  <hr />
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let order of orders">
+      <ion-item (click)="openOrderDetails(order)">
+        <ion-card style="flex-basis: 100%">
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-badge
+                style="margin-left: 70%"
+                color="primary"
+                *ngIf="order.orderStatus == 'PENDING'"
+                >{{order.orderStatus}}</ion-badge
+              >
+              <ion-badge
+                style="margin-left: 70%"
+                color="success"
+                *ngIf="order.orderStatus == 'DELIVERED'"
+                >{{order.orderStatus}}</ion-badge
+              >
+              <ion-label> {{order.orderDate}}</ion-label>
+            </ion-card-subtitle>
+            <ion-card-title>Order #{{order.orderId}} </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-label style="margin-left: 40%"
+              >Order Total:
+              <b>{{order.orderAmt | currency: 'SGD' }}</b></ion-label
+            >
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

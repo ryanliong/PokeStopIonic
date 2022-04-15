@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Order } from '../models/order';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-type': 'application/json' })
 }
 
 @Injectable({
@@ -18,7 +18,15 @@ export class OrderService {
   constructor(private httpClient: HttpClient) { }
 
   checkout(request: String): Observable<Order> {
-    return this.httpClient.put<Order>(this.baseUrl , request, httpOptions).pipe(catchError(this.handleError));
+    return this.httpClient.put<Order>(this.baseUrl, request, httpOptions).pipe(catchError(this.handleError));
+  };
+
+  getOrderListByMemberId(memberId): Observable<Order[]> {
+    return this.httpClient.get<Order[]>(this.baseUrl + '/retrieveOrderListByMemberId?memberId=' + memberId, httpOptions).pipe(catchError(this.handleError));
+  };
+
+  updateOrderReceived(request: String): Observable<Order> {
+    return this.httpClient.patch<Order>(this.baseUrl, request, httpOptions).pipe(catchError(this.handleError));
   };
 
   private handleError(error: HttpErrorResponse) {
