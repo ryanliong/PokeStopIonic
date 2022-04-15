@@ -17,7 +17,7 @@
     <ion-card-content>
       
       <ion-list *ngFor="let setList of setEntities">
-          <ion-button (click)="viewSet($event, setEntity)" *ngFor="let setEntity of setList">
+          <ion-button expand="full" (click)="viewSet($event, setEntity)" *ngFor="let setEntity of setList">
             {{setEntity.setId}} - {{setEntity.setName}} &nbsp; &nbsp; &nbsp;
             <ion-img src="{{setEntity.setPic}}" style="width: 30%;" slot="end"></ion-img>
           </ion-button>
