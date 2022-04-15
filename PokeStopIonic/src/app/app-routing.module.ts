@@ -100,6 +100,10 @@ const routes: Routes = [
   {
     path: 'tabs/tab3/addListing/:memberId',
     loadChildren: () => import('./trade/add-listing/add-listing.module').then( m => m.AddListingPageModule)
+  },
+  {
+    path: 'tabs/tab3/editListing/:listingId',
+    loadChildren: () => import('./trade/edit-listing/edit-listing.module').then( m => m.EditListingPageModule)
   }
 ];
 @NgModule({

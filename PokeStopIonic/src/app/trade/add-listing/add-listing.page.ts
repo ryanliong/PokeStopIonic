@@ -52,7 +52,6 @@ export class AddListingPage implements OnInit {
           this.message = "New listing " + newListingId + " created successfully";
 
           this.listingToAdd = new Listing();
-          this.memberToAdd = new Member();
           this.submitted = false;
           addListingForm.reset();
         },
@@ -71,14 +70,12 @@ export class AddListingPage implements OnInit {
   {
     this.submitted = false;
     this.listingToAdd = new Listing();
-    this.memberToAdd = new Member();
   }
 
   back()
   {
     this.submitted = false;
     this.listingToAdd = new Listing();
-    this.memberToAdd = new Member();
     this.router.navigate(["/tabs/tab3/my-listings"]);
   }
 

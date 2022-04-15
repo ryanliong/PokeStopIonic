@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="trade-menu"></ion-menu-button>
+      <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="deleted == false">{{listingToEdit.listingName}}</ion-title>
+    </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+  <div *ngIf="deleted == false">
+  <h3>
+    <ion-img src="{{listingToEdit.listingPic}}" style="max-width: 60%; float: left; padding-left: 5%;"></ion-img>
+    
+    <ion-button (click)="update($event)" style="max-width: 20%; float: left; padding-left: 3%;" *ngIf="listingToEdit.listingStatus === unsoldEnum">
+      <ion-icon slot="start" name="create-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="delete($event)" style="max-width: 20%; float: left; padding-left: 3%;" color="danger">
+      <ion-icon slot="start" name="trash-outline"></ion-icon>
+    </ion-button>
+    <br>
+    <br>
+    ${{listingToEdit.listingPrice}}
+  </h3> 
+  <p>{{listingToEdit.listingDesc}}</p>
+  <br>
+  <p>Status: {{listingToEdit.listingStatus}}</p>
+
+  <br>
+  <br>
+  <br>
+    <ion-button (click)="markSold($event)" *ngIf="listingToEdit.listingStatus === unsoldEnum">
+      Mark as Sold
+    </ion-button>
+  </div>
+
+  
+  <div *ngIf="deleted == true">
+    <h3>
+      Listing {{listingName}} (Id: {{listingId}}) has been deleted!
+    </h3> 
+   
+    <ion-img src="https://images-na.ssl-images-amazon.com/images/I/31Zd-A-7nnL.png" style="width: 60%;"></ion-img>
+    
+  </div>
+</ion-content>
