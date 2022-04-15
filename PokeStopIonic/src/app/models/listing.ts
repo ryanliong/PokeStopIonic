@@ -11,9 +11,9 @@ export class Listing {
   listingPic: string | undefined;
   listingStatus: ListingStatus | undefined;
 
-  member: Member | undefined;
-  feedback: Feedback | undefined;
-  reports: Report[] | undefined;
+  memberEntity: Member | undefined;
+  feedbackEntity: Feedback | undefined;
+  reportEntities: Report[] | undefined;
 
 
   constructor(

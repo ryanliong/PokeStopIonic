@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Member } from '../models/member';
 
 @Injectable({
@@ -8,51 +9,55 @@ export class SessionService {
 
   constructor() { }
 
-  getLogin(): boolean {
-    if(sessionStorage['isLogin'] == true) {
+  getIsLogin(): boolean {
+    if (sessionStorage['isLogin'] == "true") {
       return true;
     } else {
       return false;
     }
   }
 
-  setIsLogin(isLogin : boolean) : void {
+  setIsLogin(isLogin: boolean): void {
     sessionStorage['isLogin'] = isLogin;
   }
 
-  getCurrentMember(): Member
-  {
+  getCurrentMember(): Member {
     return JSON.parse(sessionStorage['currentMember']);
   }
 
-  setCurrentMember(currentMember: Member | null): void
-  {		 
+  setCurrentMember(currentMember: Member | null): void {
     sessionStorage['currentMember'] = JSON.stringify(currentMember);
   }
 
-  getUsername(): string
-  {
+  getUsername(): string {
     return sessionStorage['username'];
   }
 
-
-
-  setUsername(username: string | undefined): void
-  {
+  setUsername(username: string | undefined): void  {
     sessionStorage['username'] = username;
   }
-  
-  
-  
-  getPassword(): string
-  {
+
+  getEmail(): string {
+    return sessionStorage['email'];
+  }
+
+  setEmail(email: string | undefined): void  {
+    sessionStorage['email'] = email;
+  }
+
+  getPassword(): string  {
     return sessionStorage['password'];
   }
 
-
-
-  setPassword(password: string | undefined): void
-  {
+  setPassword(password: string | undefined): void  {
     sessionStorage['password'] = password;
+  }
+
+  getMemberId(): number {
+    return sessionStorage['memberId']
+  }
+
+  setMemberId(memberId: number | undefined): void {
+    sessionStorage['memberId'] = memberId;
   }
 }

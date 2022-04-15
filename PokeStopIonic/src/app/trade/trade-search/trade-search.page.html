@@ -3,10 +3,29 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="trade-menu"></ion-menu-button>
     </ion-buttons>
-    <ion-title>trade-search</ion-title>
+    <ion-title>All Available Listings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div>
+  <h5>Listings</h5>
+  </div>
+  <ion-card (click)="viewListing($event, listing)" *ngFor="let listing of listings">
+    <div *ngIf="listing.listingStatus === unsoldEnum && listing.memberEntity.userId != memberId">
+      <ion-img src="{{listing.listingPic}}" style="width: 20%; float: left;"></ion-img>
+      <div style="padding-left: 25%;">
+      <ion-card-header> 
+        <ion-card-title>
+          {{listing.listingName}}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{listing.listingDesc}}
+        <br>
+        ${{listing.listingPrice}}
+      </ion-card-content>
+      </div>
+    </div>
+  </ion-card>
 </ion-content>

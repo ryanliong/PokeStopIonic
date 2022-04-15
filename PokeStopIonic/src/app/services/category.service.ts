@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Category } from '../models/Category';
+import { Category } from '../models/category';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-type': 'application/json' })

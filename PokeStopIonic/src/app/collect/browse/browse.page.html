@@ -8,5 +8,26 @@
 </ion-header>
 
 <ion-content>
+  <ion-card *ngFor="let generation of generations">
+    <ion-card-header>
+      <ion-card-title >{{generation.generationName}} 
+        <ion-img style="width: 50%; vertical-align: middle" src="{{generation.generationPic}}"></ion-img>
+      </ion-card-title>     
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let setEntity of generation['setEntities']">
+            <ion-thumbnail slot="start" (click)="viewSet($event, setEntity)">
+              <ion-img src="{{setEntity.setPic}}" style="width: 160px; vertical-align: middle"></ion-img>
+            </ion-thumbnail>
 
+            <ion-label style="padding-left: 25%;" class="ion-text-wrap" (click)="viewSet($event, setEntity)">
+              <b>{{setEntity.setName}}</b>
+              <br>
+              {{setEntity.setDesc}}
+            </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

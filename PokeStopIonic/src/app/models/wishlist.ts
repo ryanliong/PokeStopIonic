@@ -5,7 +5,7 @@ export class Wishlist {
   wishlistId: number | undefined;
 
   member: Member | undefined;
-  cards: Card[] | undefined;
+  cardEntities: Card[] | undefined;
 
 
   constructor(wishlistId?: number) {

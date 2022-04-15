@@ -1,12 +1,157 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="shop-menu"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>settings</ion-title>
+    <ion-title>Update Member Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form
+    *ngIf="retrieveMemberError == false && memberToUpdate != null"
+    #updateMemberForm="ngForm"
+    (ngSubmit)="update(updateMemberForm)"
+  >
+    <ion-card>
+      <ion-card-content>
+        <div *ngIf="retrieveMemberError == true" style="color: red">
+          Member ID {{memberId}} does not exist!
+        </div>
 
+        <div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
+
+        <div *ngIf="resultError == true" style="color: red">{{message}}</div>
+
+        <div style="color: red">
+          <div
+            *ngIf="userName.invalid && (userName.dirty || userName.touched || submitted)"
+            class="errorText"
+          >
+            <div *ngIf="userName.errors.required">UserName is required.</div>
+          </div>
+
+          <div
+            *ngIf="password.invalid && (password.dirty || password.touched || submitted)"
+            class="errorText"
+          >
+            <div *ngIf="password.errors.required">Password is required.</div>
+          </div>
+
+          <div
+            *ngIf="emailAddr.invalid && (emailAddr.dirty || emailAddr.touched || submitted)"
+            class="errorText"
+          >
+            <div *ngIf="emailAddr.errors.required">
+              Email Address is required.
+            </div>
+          </div>
+
+          <div
+            *ngIf="shippingAddr.invalid && (shippingAddr.dirty || shippingAddr.touched || submitted)"
+            class="errorText"
+          >
+            <div *ngIf="shippingAddr.errors.required">
+              Shipping Address is required.
+            </div>
+          </div>
+
+          <div
+            *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched || submitted)"
+            class="errorText"
+          >
+            <div *ngIf="phoneNumber.errors.required">
+              Phone Number is required.
+            </div>
+          </div>
+        </div>
+
+        <ion-list>
+          <ion-item>
+            <ion-label><b>Member ID</b></ion-label>
+            {{memberToUpdate.userId}}
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"><b>New Username</b></ion-label>
+            <ion-input
+              type="text"
+              id="userName"
+              name="userName"
+              [(ngModel)]="memberToUpdate.userName"
+              required="true"
+              #userName="ngModel"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon
+              [name]="type ? 'eye-outline' : 'eye-off-outline'"
+              slot="end"
+              color="medium"
+              (click)="changeType()"
+            ></ion-icon>
+            <ion-label position="floating">New Password</ion-label>
+            <ion-input
+              [type]="type ? 'password' : 'text'"
+              id="password"
+              name="password"
+              [(ngModel)]="memberToUpdate.password"
+              minlength="4"
+              maxlength="32"
+              required="true"
+              #password="ngModel"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"><b>New Email Address</b></ion-label>
+            <ion-input
+              type="text"
+              id="emailAddr"
+              name="emailAddr"
+              [(ngModel)]="memberToUpdate.emailAddr"
+              required="true"
+              #emailAddr="ngModel"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"
+              ><b>New Shipping Address</b></ion-label
+            >
+            <ion-input
+              type="text"
+              id="shippingAddr"
+              name="shippingAddr"
+              [(ngModel)]="memberToUpdate.defaultShippingAddress"
+              required="true"
+              #shippingAddr="ngModel"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Phone Number</ion-label>
+            <ion-input
+              type="number"
+              id="phoneNumber"
+              name="phoneNumber"
+              [(ngModel)]="memberToUpdate.phoneNumber"
+              max="99999999"
+              min="00000000"
+              required="true"
+              #phoneNumber="ngModel"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="text-align: center">
+      <ion-card-content>
+        <ion-button type="submit" ion-button block> Update </ion-button>
+
+        <ion-button *ngIf="memberToUpdate != null" (click)="back()">
+          Go back
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </form>
 </ion-content>

@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Create New Listing</ion-title>
+    </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+  <form #createProductForm="ngForm" (ngSubmit)="submit(createProductForm)">
+    <ion-card>
+
+      <ion-card-content>
+
+        <div *ngIf="resultSuccess == true" style="color: blue;">
+          {{message}}
+        </div>
+
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+
+        <div style="color: red;">
+
+          <div *ngIf="listingName.invalid && (listingName.dirty || listingName.touched || submitted)" class="errorText">
+            <div *ngIf="listingName.errors.required">
+              Listing Name is required.
+            </div>
+          </div>
+
+          <div *ngIf="listingDesc.invalid && (listingDesc.dirty || listingDesc.touched || submitted)" class="errorText">
+            <div *ngIf="listingDesc.errors.required">
+              Listing Description is required.
+            </div>
+          </div>
+
+        </div>
+
+        <ion-list>
+
+          <ion-item>
+            <ion-label><b>Listing Name</b></ion-label>
+            <ion-input type="text" id="listingName" name="listingName" [(ngModel)]="listingToAdd.listingName" required="true"
+              #listingName="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Listing Picture Link</b></ion-label>
+            <ion-input type="text" id="listingPic" name="listingPic" [(ngModel)]="listingToAdd.listingPic" required="false" #listingPic="ngModel">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Listing Description</b></ion-label>
+            <ion-input type="text" id="listingDesc" name="listingDesc" [(ngModel)]="listingToAdd.listingDesc"
+              required="true" #listingDesc="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Listing Price</b></ion-label>
+            <ion-input type="text" id="listingPrice" name="listingPrice" [(ngModel)]="listingToAdd.listingPrice"
+              required="false" #listingPrice="ngModel"></ion-input>
+          </ion-item>
+
+        </ion-list>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="text-align: center;">
+
+      <ion-card-content>
+        <ion-button (click)="clear()">
+          Clear
+        </ion-button>
+        <ion-button type="submit" ion-button block>
+          Create
+        </ion-button>
+      </ion-card-content>
+
+    </ion-card>
+
+  </form>
+
+</ion-content>
