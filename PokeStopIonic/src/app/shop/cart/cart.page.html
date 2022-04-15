@@ -71,27 +71,40 @@
 <ion-footer>
   <ion-toolbar color="white" style="padding: 0">
     <ion-row>
-      <ion-col style="background-color: white" size="8">
+      <ion-col style="background-color: white" size="7">
         Total
         <b><ion-label>{{subTotal | currency: 'SGD'}}</ion-label></b>
       </ion-col>
       <ion-col
         *ngIf="orderItems.length > 0"
-        style="background-color: #2dd36f"
-        size="4"
+        style="background-color: #2dd36f; left: 4px"
+        size="5"
       >
-        <ion-button (click)="checkout()" fill="clear" color="light">
+        <!-- <ion-button (click)="checkout()" fill="clear" color="light">
           Checkout
+        </ion-button> -->
+        <ion-button
+          (click)="openCheckout(orderItems, subTotal)"
+          fill="clear"
+          color="light"
+          style="margin-left: -3px"
+        >
+          Go To Checkout
         </ion-button>
       </ion-col>
 
       <ion-col
         *ngIf="orderItems.length == 0"
-        style="background-color: gray"
-        size="4"
+        style="background-color: gray; left: 4px"
+        size="5"
       >
-        <ion-button (click)="checkout()" fill="clear" color="light" disabled>
-          Checkout
+        <ion-button
+          fill="clear"
+          color="light"
+          disabled
+          style="margin-left: -3px"
+        >
+          Go To Checkout
         </ion-button>
       </ion-col>
     </ion-row>

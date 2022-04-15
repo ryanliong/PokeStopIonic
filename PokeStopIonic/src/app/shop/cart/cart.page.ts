@@ -5,6 +5,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { Product } from 'src/app/models/product';
 import { Cart } from 'src/app/models/cart';
 import { AlertController, ModalController } from '@ionic/angular';
+import { CheckoutDetailsPage } from '../checkout-details/checkout-details.page';
 
 @Component({
   selector: 'app-cart',
@@ -178,6 +179,18 @@ export class CartPage implements OnInit {
     await alert.present();
   }
 
+  async openCheckout(OrderItems, SubTotal) {
+    const modal = await this.modalController.create({
+      component: CheckoutDetailsPage,
+      componentProps: {
+        OrderItems: OrderItems,
+        SubTotal: SubTotal
+      }
+      // enterAnimation: ,
+    });
+    await modal.present();
+  }
+
   async checkout() {
     const alert = await this.alertController.create({
       header: 'Success',
@@ -190,7 +203,7 @@ export class CartPage implements OnInit {
     {
       "deliveryAddr": null,
       "memberId": this.memberId,
-      "orderItemList" : this.orderItems
+      "orderItemList": this.orderItems
     };
 
     const request = JSON.stringify(requestJson);

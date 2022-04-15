@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderItemService } from 'src/app/services/order-item.service';
-import { Product } from 'src/app/models/product';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
-
 
 @Component({
   selector: 'app-cart',

@@ -9,6 +9,7 @@ import { OrderItemService } from 'src/app/services/order-item.service';
 import { Animation, AnimationController, ModalController } from '@ionic/angular';
 import { CartPage } from '../cart/cart.page';
 import { ProductDetailsPage } from '../product-details/product-details.page';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-shop-home',
@@ -35,7 +36,7 @@ export class ShopHomePage implements OnInit {
   @ViewChild('cartfab', { read: ElementRef }) cartBtn: ElementRef;
   cartAnimation: Animation;
 
-  constructor(private productService: ProductService, private categoryService: CategoryService, private orderItemService: OrderItemService, private cartService: CartService, private animationController: AnimationController, private modalController: ModalController) {
+  constructor(private productService: ProductService, private categoryService: CategoryService, private orderItemService: OrderItemService, private cartService: CartService, private sessionService: SessionService, private animationController: AnimationController, private modalController: ModalController) {
     this.products = new Array();
     this.categories = new Array();
     this.cart = new Cart();
@@ -43,6 +44,10 @@ export class ShopHomePage implements OnInit {
   }
 
   ngOnInit() {
+    this.memberId = this.sessionService.getMemberId();
+    console.log("memberId");
+    console.log(this.memberId);
+
     this.getAllProducts();
 
     this.categoryService.getCategories().subscribe({
@@ -75,7 +80,7 @@ export class ShopHomePage implements OnInit {
     console.log("getCardByMember()");
     this.cartService.getCartByMemberId(this.memberId).subscribe({
       next: (response) => {
-        if(response.cartId === undefined){
+        if (response.cartId === undefined) {
           this.cartService.createCart(this.memberId).subscribe({
             next: (response1) => {
               this.cart = response1;
@@ -89,7 +94,7 @@ export class ShopHomePage implements OnInit {
             }
           })
         }
-        else{
+        else {
           this.cart = response;
           console.log(response);
           this.orderItems = response.orderItemEntities;

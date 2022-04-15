@@ -33,8 +33,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'shop-search',
-    loadChildren: () => import('./shop/shop-search/shop-search.module').then( m => m.ShopSearchPageModule),
+    path: 'checkout-details',
+    loadChildren: () => import('./shop/checkout-details/checkout-details.module').then( m => m.CheckoutDetailsPageModule),
     canActivate: [AuthGuard]
   },
   {
