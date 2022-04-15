@@ -14,7 +14,7 @@ import { Member } from '../models/member';
 })
 export class LoginPage implements OnInit {
   submitted: boolean;
-  username: string;
+  email: string;
   password: string;
   loginError: boolean;
   errorMessage: string;
@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
 
   clear()
   {
-		this.username = "";
+		this.email = "";
 		this.password = "";
 	}
 
@@ -40,10 +40,10 @@ export class LoginPage implements OnInit {
 		this.submitted = true;
 
 		if (memberLoginForm.valid) {
-			this.sessionService.setUsername(this.username);
+			this.sessionService.setEmail(this.email);
 			this.sessionService.setPassword(this.password);
 
-      this.memberService.retrieveMemberId(this.username).subscribe({
+      this.memberService.retrieveMemberId(this.email).subscribe({
         next:(response)=>{
           let memberId: number = response;
 
@@ -54,7 +54,7 @@ export class LoginPage implements OnInit {
         }
       });
 
-      this.memberService.memberLogin(this.username, this.password).subscribe({
+      this.memberService.memberLogin(this.email, this.password).subscribe({
         next:(response)=>{
           let member: Member = response;
 
@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
 	}
 
   navigateToHomePage() {
-    this.router.navigate(["/tabs/tab1"])
+    this.router.navigate(["/tabs/tab1"]);
   }
 
 	back() {

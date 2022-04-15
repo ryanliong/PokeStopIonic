@@ -13,20 +13,20 @@ import { GenerationService } from 'src/app/services/generation.service';
 export class BrowsePage implements OnInit {
 
   generations: Generation[] | null;
-  setEntities: SetEntity[][] | null;
+  // setEntities: SetEntity[][] | null;
 
   constructor(private generationService: GenerationService, private router: Router) {
     this.generations = new Array();
-    this.setEntities = new Array();
+    // this.setEntities = new Array();
   }
 
   ngOnInit() {
     this.generationService.getGenerations().subscribe({
       next:(response) => {
         this.generations = response;
-        for (let i = 0; i <= this.generations.length; i++) {
-          this.setEntities.push(this.generations[i].setEntities);
-        }
+        // for (let i = 0; i <= this.generations.length; i++) {
+        //   this.setEntities.push(this.generations[i].setEntities);
+        // }
       },
       error:(error)=>{
         console.log('browseComponent.ts: ' + error);

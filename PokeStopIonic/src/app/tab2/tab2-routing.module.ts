@@ -29,7 +29,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'collect-home',
+        redirectTo: 'browse',
         pathMatch: 'full'
       }
     ]

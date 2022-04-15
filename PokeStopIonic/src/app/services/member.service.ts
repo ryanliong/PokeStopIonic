@@ -22,8 +22,8 @@ export class MemberService {
 
   constructor(private httpClient: HttpClient, private sessionService: SessionService) { }
 
-  memberLogin(username: string | undefined, password: string | undefined): Observable<Member> {
-    return this.httpClient.get<Member>(this.baseUrl + "/memberLogin?username=" + username + "&password=" + password).pipe (
+  memberLogin(email: string | undefined, password: string | undefined): Observable<Member> {
+    return this.httpClient.get<Member>(this.baseUrl + "/memberLogin?email=" + email + "&password=" + password).pipe (
       catchError(this.handleError)
     );
   }
@@ -36,8 +36,8 @@ export class MemberService {
     );
   }
 
-  retrieveMemberId(username: string): Observable<number> {
-		return this.httpClient.get<number>(this.baseUrl + "/retrieveMemberId/" + username).pipe
+  retrieveMemberId(email: string): Observable<number> {
+		return this.httpClient.get<number>(this.baseUrl + "/retrieveMemberId/" + email).pipe
 		(
 			catchError(this.handleError)
 		);
