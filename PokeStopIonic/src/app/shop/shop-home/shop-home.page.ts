@@ -29,8 +29,7 @@ export class ShopHomePage implements OnInit {
   orderItem = null;
   productQty = 1;
 
-  // memberId = 1;
-  memberId = 0;
+  memberId = 1;
 
   filteredProducts = new Array();
 
@@ -45,9 +44,9 @@ export class ShopHomePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.memberId = this.sessionService.getMemberId();
-    // console.log("memberId");
-    // console.log(this.memberId);
+    this.memberId = this.sessionService.getMemberId();
+    console.log("memberId");
+    console.log(this.memberId);
 
     this.getAllProducts();
 
