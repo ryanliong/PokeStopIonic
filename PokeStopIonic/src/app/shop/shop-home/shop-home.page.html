@@ -3,10 +3,98 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="shop-menu"></ion-menu-button>
     </ion-buttons>
-    <ion-title>shopHome</ion-title>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-searchbar
+    placeholder='Search "Gyarados Card Sleeves"'
+    [(ngModel)]="searchQuery"
+    showCancelButton="focus"
+    animated
+  >
+  </ion-searchbar>
 
+  <!-- <ion-label>Select Category</ion-label>
+    <select-searchable
+      itemContent
+      [(ngModel)]="category"
+      [items]="categories"
+      itemValueField="categoryId"
+      itemTextField="categoryName"
+    >
+    </select-searchable> -->
+
+  <ion-item>
+    <ion-label>Filter by Category</ion-label>
+    <ion-select
+      okText="Ok"
+      cancelText="Cancel"
+      value="0"
+      (ionChange)="filterCategory($event);"
+    >
+      <ion-select-option selected value="0">All </ion-select-option>
+      <ion-select-option
+        *ngFor="let category of categories | filter:searchQuery"
+        [value]="category.categoryId"
+        >{{category.categoryName}}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+
+  <hr />
+
+  <!-- <ion-list>
+    <ion-item *ngFor="let category of categories | filter:searchQuery">
+      <ion-label>{{category.categoryName}}</ion-label>
+    </ion-item>
+  </ion-list> -->
+
+  <ion-list>
+    <ion-item *ngFor="let product of products | filter:searchQuery">
+      <ion-thumbnail
+        slot="start"
+        style="width: 55px; height: 80px; vertical-align: middle"
+        (click)="openProductDetails(product)"
+      >
+        <ion-img
+          [src]="getImagePath(product.productPic)"
+          style="width: 55px; height: 80px; vertical-align: middle"
+        ></ion-img>
+      </ion-thumbnail>
+
+      <ion-label class="ion-text-wrap" (click)="openProductDetails(product)">
+        {{product.productName}}<br /><br />
+        <b>{{product.productPrice | currency: 'SGD' }}</b>
+        <!-- <div>{{product.productDesc}}</div> -->
+      </ion-label>
+
+      <ion-row slot="end" class="ion-no-padding ion-align-items-center">
+        <ion-col size="5">
+          <ion-button (click)="addToCart(product)" fill="clear">
+            <ion-icon name="add" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <!--         <ion-col size="2"> </ion-col>
+
+        <ion-col size="5">
+          <ion-button
+            (click)="removeFromCart($event, product)"
+            fill="clear"
+            [disabled]="!cart[product.productId]"
+          >
+            <ion-icon name="remove" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col> -->
+      </ion-row>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCart()" color="primary" #cartfab>
+      <ion-icon name="cart"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -10,13 +10,13 @@ export class Product {
   category: Category | undefined;
 
   constructor(
-    productId?: number , 
-    productName?: string , 
-    productDesc?: string , 
-    productPrice?: number , 
-    qtyInStock?: number , 
+    productId?: number,
+    productName?: string,
+    productDesc?: string,
+    productPrice?: number,
+    qtyInStock?: number,
     productPic?: string
-) {
+  ) {
     this.productId = productId
     this.productName = productName
     this.productDesc = productDesc
