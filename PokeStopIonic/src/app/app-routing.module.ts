@@ -38,6 +38,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'product-details',
+    loadChildren: () => import('./shop/product-details/product-details.module').then( m => m.ProductDetailsPageModule)
+  },
+  {
     path: 'collect-home',
     loadChildren: () => import('./collect/collect-home/collect-home.module').then( m => m.CollectHomePageModule),
     canActivate: [AuthGuard]
