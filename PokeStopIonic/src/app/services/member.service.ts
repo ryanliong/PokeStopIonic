@@ -6,7 +6,6 @@ import { catchError } from 'rxjs/operators';
 
 import { SessionService } from '../services/session.service';
 import { Member } from '../models/member';
-import { CreateMemberReq } from '../models/create-member-req';
 import { UpdateMemberReq } from '../models/update-member-req';
 
 
@@ -30,9 +29,7 @@ export class MemberService {
   }
 
   createNewMember(newMember: Member): Observable<number> {
-    let createMemberReq: CreateMemberReq = new CreateMemberReq(newMember);
-
-    return this.httpClient.put<number>(this.baseUrl, createMemberReq, httpOptions).pipe (
+    return this.httpClient.put<number>(this.baseUrl, newMember, httpOptions).pipe (
       catchError(this.handleError)
     );
   }

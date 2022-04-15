@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'sign-up',
-    loadChildren: () => import('./login/sign-up/sign-up.module').then( m => m.SignUpPageModule)
+    loadChildren: () => import('./sign-up/sign-up.module').then( m => m.SignUpPageModule)
   },
   {
     path: 'access-right-error',
@@ -106,6 +106,7 @@ const routes: Routes = [
     path: 'tabs/tab3/editListing/:listingId',
     loadChildren: () => import('./trade/edit-listing/edit-listing.module').then( m => m.EditListingPageModule)
   }
+
 ];
 @NgModule({
   imports: [
