@@ -93,6 +93,10 @@ const routes: Routes = [
   {
     path: 'tabs/tab3/viewListing/:listingId',
     loadChildren: () => import('./trade/view-listing/view-listing.module').then( m => m.ViewListingPageModule)
+  },
+  {
+    path: 'tabs/tab3/addListing/:memberId',
+    loadChildren: () => import('./trade/add-listing/add-listing.module').then( m => m.AddListingPageModule)
   }
 ];
 @NgModule({

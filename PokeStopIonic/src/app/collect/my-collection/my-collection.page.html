@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-button (click)="viewTotal()">Show Total</ion-button> -->
+<ion-button>Tracker = {{currentCards}}/{{totalCards}}</ion-button>
 
 <ion-content>
   <ion-card *ngFor="let card of cardsToView">
@@ -19,6 +19,10 @@
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
+        <ion-button style="float: right;" (click)="removeFromCollection($event, card)">
+          <ion-icon name="remove-outline"></ion-icon>
+          <ion-label>Remove</ion-label>
+        </ion-button>
         {{card.cardNumber}}
         <br>
         {{card.cardRarity}}

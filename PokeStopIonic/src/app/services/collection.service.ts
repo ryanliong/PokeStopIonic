@@ -4,6 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Collection } from '../models/collection';
 import { Card } from '../models/card';
+import { UpdateCollection } from '../models/update-collection';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +14,25 @@ export class CollectionService {
 
   baseUrl: string = "/api/Collection";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private sessionService: SessionService ) { }
 
-  getCollectionByMemberId(memberId : number): Observable<Card[]> {
+  getCollectionByMemberId(): Observable<Card[]> {
+    let memberId = this.sessionService.getMemberId();
     return this.httpClient.get<Card[]>(this.baseUrl + "/retrieveCollection/" + memberId).pipe(catchError(this.handleError));
+  }
+
+  addCardToCollection(cardId: number): Observable<number> {
+    let memberId = this.sessionService.getMemberId();
+    let updateCollection: UpdateCollection = new UpdateCollection(cardId,memberId);
+
+    return this.httpClient.post<number>(this.baseUrl + "/addCard", updateCollection).pipe(catchError(this.handleError));
+  }
+
+  removeCardFromCollection(cardId: number): Observable<number> {
+    let memberId = this.sessionService.getMemberId();
+    let updateCollection: UpdateCollection = new UpdateCollection(cardId,memberId);
+
+    return this.httpClient.post<number>(this.baseUrl + "/removeCard", updateCollection).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse)

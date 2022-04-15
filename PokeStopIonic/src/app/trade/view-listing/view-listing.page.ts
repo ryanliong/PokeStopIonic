@@ -30,10 +30,7 @@ export class ViewListingPage implements OnInit {
     this.listingService.getListingById(this.listingId).subscribe({
       next:(response)=>{
         this.listingToView = response;
-        console.log("console log working!");
-        console.log(this.listingToView);
-        console.log(this.listingToView.memberEntity);
-        this.memberToView = response.memberEntity;
+        this.memberToView = this.listingToView.memberEntity;
       },
       error:(error)=> {
         console.log('ViewListingPage' + error);

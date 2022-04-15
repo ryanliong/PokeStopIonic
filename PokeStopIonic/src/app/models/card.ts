@@ -10,6 +10,8 @@ export class Card {
   cardElementType: ElementType | undefined;
   cardPic: String | undefined;
   setEntity: SetEntity | undefined;
+  gotten: boolean | undefined;
+  wished: boolean | undefined;
 
 
   constructor(

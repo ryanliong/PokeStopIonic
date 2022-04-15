@@ -4,6 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Listing } from '../models/listing';
+import { Member } from '../models/member';
+import { CreateListingReq } from '../models/create-listing-req';
 
 const httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,6 +31,16 @@ export class ListingService {
 		return this.httpClient.get<Listing>(this.baseUrl + "/retrieveListing/" + listingId).pipe
 		(
 			catchError(this.handleError)
+		);
+	}
+
+	createNewListing(listingToAdd: Listing, memberToAdd: Member): Observable<number>
+	{		
+		let createListingReq: CreateListingReq = new CreateListingReq(listingToAdd, memberToAdd);
+		
+		return this.httpClient.put<number>(this.baseUrl, createListingReq, httpOptions).pipe
+		(
+		catchError(this.handleError)
 		);
 	}
 
