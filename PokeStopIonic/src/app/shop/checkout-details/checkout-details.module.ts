@@ -4,17 +4,20 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ShopSearchPageRoutingModule } from './shop-search-routing.module';
+import { CheckoutDetailsPageRoutingModule } from './checkout-details-routing.module';
 
-import { ShopSearchPage } from './shop-search.page';
+import { CheckoutDetailsPage } from './checkout-details.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ShopSearchPageRoutingModule
+    CheckoutDetailsPageRoutingModule
   ],
-  declarations: [ShopSearchPage]
+  declarations: [CheckoutDetailsPage]
 })
-export class ShopSearchPageModule {}
+export class CheckoutDetailsPageModule {
+
+
+}
