@@ -1,10 +1,7 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { of, combineLatest, Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
 import { ListingService } from 'src/app/services/listing.service';
 import { Listing } from 'src/app/models/listing';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ListingStatus } from 'src/app/models/listing-status';
 import { SessionService } from 'src/app/services/session.service';
 
@@ -17,6 +14,7 @@ export class TradeSearchPage implements OnInit {
   listings: Listing[] | null;
   unsoldEnum = "UNSOLD";
   memberId: number | null;
+  searchQuery: string;
 
   constructor(private listingService: ListingService, private router: Router, private sessionService: SessionService) {
     this.listings = new Array();

@@ -1,36 +1,41 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button menu="trade-menu"></ion-menu-button>
       <ion-button (click)="back()">
         <ion-icon slot="start" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{listingToView.listingName}}</ion-title>
-    </ion-toolbar> 
+  </ion-toolbar> 
 </ion-header>
 
+
+
 <ion-content>
-  <div>
-  <h3>
-    <ion-img src="{{listingToView.listingPic}}" style="max-width: 60%; float: left; padding-left: 5%;"></ion-img>
-    <br>
-    <br>
-    ${{listingToView.listingPrice}}
-  </h3> 
-  <p>{{listingToView.listingDesc}}</p>
+  <br />
+  <ion-img
+    src="{{listingToView.listingPic}}"
+    style="height: 300px; vertical-align: middle"
+  ></ion-img>
 
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{listingToView.listingName}}</ion-card-title>
+      <ion-card-title style="float: right;">${{listingToView.listingPrice}}</ion-card-title>
+    </ion-card-header>
 
-  <br>
-  <br>
-  <br>
-  <div>
-    <h5>
-      Contact {{memberToView.userName}} for more details!
-    </h5> 
-    <p>Email: {{memberToView.emailAddr}}</p>
-    <p>Phone: {{memberToView.phoneNumber}}</p>
-    </div>
-
+    <ion-card-content> {{listingToView.listingDesc}} </ion-card-content>
+    <ion-card-content>
+      <ion-grid>
+        <ion-label>
+          <b>Seller: {{memberToView.userName}}</b>
+        </ion-label>
+        <ion-label>
+          <p>Email: {{memberToView.emailAddr}}</p>
+        </ion-label> 
+        <ion-label>
+          <p>Phone: {{memberToView.phoneNumber}}</p>
+        </ion-label>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
