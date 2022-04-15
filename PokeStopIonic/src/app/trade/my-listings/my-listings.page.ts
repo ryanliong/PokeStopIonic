@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Listing } from 'src/app/models/listing';
 import { ListingService } from 'src/app/services/listing.service';
 import { SessionService } from 'src/app/services/session.service';
@@ -16,21 +17,27 @@ export class MyListingsPage implements OnInit {
   blockedEnum = "BLOCKED"
   memberId: number | null;
 
-  constructor(private listingService: ListingService, private router: Router, private sessionService: SessionService) {
+  constructor(private listingService: ListingService, private router: Router, private sessionService: SessionService, private routerActive: ActivatedRoute) {
     this.listings = new Array();
   }
 
   ngOnInit() {
-    this.memberId = this.sessionService.getMemberId();
-    this.listingService.getListings().subscribe({
-      next:(response) => {
-        this.listings = response;
-      },
-      error:(error)=>{
-        console.log('browseComponent.ts: ' + error);
+    this.routerActive.paramMap.subscribe(paramMap => {
+      console.log('router active')
+      if (this.router.url === "/tabs/tab3/my-listings") {
+
+        this.memberId = this.sessionService.getMemberId();
+        this.listingService.getListings().subscribe({
+          next:(response) => {
+            this.listings = response;
+          },
+          error:(error)=>{
+            console.log('browseComponent.ts: ' + error);
+          }
+        });
+
       }
-    });
-  
+    })  
   }
 
   editListing(event, listing) {

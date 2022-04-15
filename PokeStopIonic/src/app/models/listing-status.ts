@@ -1,5 +1,5 @@
 export enum ListingStatus {
-  UNSOLD,
-  SOLD,
-  BLOCKED
+  UNSOLD = "UNSOLD",
+  SOLD = "SOLD",
+  BLOCKED = "BLOCKED"
 }
