@@ -35,6 +35,14 @@ export class BrowsePage implements OnInit {
     
   }
 
+  getGenerationImagePath(variable) {
+    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/generationUploadedImages/" + variable;
+  }
+
+  getSetImagePath(variable) {
+    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/setUploadedImages/" + variable;
+  }
+
   viewSet(event, setEntity) {
     this.router.navigate(["/tabs/tab2/viewSet/" + setEntity.setId]);
   }

@@ -138,6 +138,14 @@ export class ViewSetPage implements OnInit {
     })
   }
 
+  getSetImagePath(variable) {
+    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/setUploadedImages/" + variable;
+  }
+
+  getCardImagePath(variable) {
+    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/cardUploadedImages/" + variable;
+  }
+
   back()
   {
     this.router.navigate(["/tabs/tab2/browse"]);
