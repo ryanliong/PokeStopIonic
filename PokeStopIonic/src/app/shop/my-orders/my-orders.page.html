@@ -7,7 +7,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="orders.length == 0">
+  <ion-card>
+    <center>
+      <ion-card-header>
+        <ion-card-title>Oops!</ion-card-title>
+      </ion-card-header>
+      <ion-img
+        [src]="getImagePath('emptyOrders.png')"
+        style="width: 80px; height: 80px; vertical-align: middle"
+      ></ion-img>
+      <ion-card-content> Your Order is Empty </ion-card-content>
+    </center>
+  </ion-card>
+</ion-content>
+
+<ion-content *ngIf="orders.length > 0">
   <ion-item>
     <ion-label>Filter by Order Status</ion-label>
     <ion-select
