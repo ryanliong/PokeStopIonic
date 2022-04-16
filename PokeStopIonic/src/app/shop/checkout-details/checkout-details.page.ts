@@ -4,6 +4,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { PaymentService } from 'src/app/services/payment.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-shop-search',
@@ -14,12 +15,13 @@ export class CheckoutDetailsPage implements OnInit {
   orderItems = null;
   subTotal = 0;
 
-  memberId = 1;
+  memberId = 0;
   selectedValue = "paypal";
 
-  constructor(private modalController: ModalController, private alertController: AlertController, private navParams: NavParams, private orderService: OrderService, private paymentService: PaymentService, private router: Router, private inAppBrowser: InAppBrowser) { }
+  constructor(private modalController: ModalController, private alertController: AlertController, private navParams: NavParams, private orderService: OrderService, private paymentService: PaymentService, private router: Router, private inAppBrowser: InAppBrowser, private sessionService: SessionService) { }
 
   ngOnInit() {
+    this.memberId = this.sessionService.getMemberId();
     this.orderItems = this.navParams.get('OrderItems');
     this.subTotal = this.navParams.get('SubTotal');
   }

@@ -16,7 +16,6 @@ export class OrderDetailsPage implements OnInit {
   productQty = 1;
   payment = null;
 
-  memberId = 1;
   selectedValue = "";
 
   constructor(private cartService: CartService, private orderService: OrderService, private modalController: ModalController, private alertController: AlertController, private navParams: NavParams, private router: Router) { }

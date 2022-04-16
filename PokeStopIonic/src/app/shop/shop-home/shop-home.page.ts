@@ -29,7 +29,7 @@ export class ShopHomePage implements OnInit {
   orderItem = null;
   productQty = 1;
 
-  memberId = 1;
+  memberId = 0;
 
   filteredProducts = new Array();
 
