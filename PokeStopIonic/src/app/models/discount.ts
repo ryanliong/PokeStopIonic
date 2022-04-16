@@ -1,6 +1,7 @@
 export class Discount {
   discountId: number | undefined;
   discountCode: string | undefined;
+  discountAmount: number | undefined;
   startDate: Date | undefined;
   endDate: Date | undefined;
 
@@ -8,11 +9,13 @@ export class Discount {
   constructor(
     discountId: number , 
     discountCode: string , 
-    startDate: Date , 
+    discountAmount: number,
+    startDate: Date, 
     endDate: Date 
 ) {
     this.discountId = discountId
     this.discountCode = discountCode
+    this.discountAmount = discountAmount
     this.startDate = startDate
     this.endDate = endDate
   }
