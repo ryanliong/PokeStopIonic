@@ -10,13 +10,12 @@
 </ion-header>
 
 <ion-content>
-  <div>
+  <div style="padding-left: 5%;">
   <h3>{{setToView.setName}}
-    <ion-img [src]="getSetImagePath(setToView.setPic)" style="max-width: 200px; float: right; padding-right: 10%;"></ion-img>
+    <ion-img [src]="getSetImagePath(setToView.setPic)" style="width: 170px; height: 100px; float: right; padding-right: 10%;"></ion-img>
   </h3>
-  
   <p>{{setToView.setDesc}}</p>
-  <p>Realease Date: {{setToView.releaseDate}}</p>
+  <ion-label>Release Date: {{setToView.releaseDate | slice:0:10}}</ion-label>
   </div>
   <ion-card *ngFor="let card of cardsToView">
     <ion-img [src]="getCardImagePath(card.cardPic)" style="width: 20%; float: left;"></ion-img>
@@ -27,19 +26,24 @@
       </ion-card-title>  
     </ion-card-header>
     <ion-card-content>
-      <ion-button *ngIf="card.gotten == false" style="float: right;" (click)="addToCollection($event, card)">
-        <ion-icon name="add-outline"></ion-icon>
-        <ion-label>Add to Collection</ion-label>
-      </ion-button>
-      <ion-button *ngIf="card.wished == false" color="secondary" style="float: right;" (click)="addToWishlist($event, card)">
-        <ion-icon name="add-outline"></ion-icon>
-        <ion-label>Add to Wishlist</ion-label>
-      </ion-button>
+      <br>
       {{card.cardNumber}}
       <br>
       {{card.cardRarity}}
       <br>
       {{card.cardElementType}}
+      <br>
+      <div style="float: left;">
+      <ion-button *ngIf="card.gotten == false" size="small" style="float: right;" (click)="addToCollection($event, card)">
+        <ion-icon name="add-outline"></ion-icon>
+        <ion-label>Collection</ion-label>
+      </ion-button>
+      <ion-button *ngIf="card.wished == false" size="small" color="secondary" style="float: right;"
+        (click)="addToWishlist($event, card)">
+        <ion-icon name="add-outline"></ion-icon>
+        <ion-label>Wishlist</ion-label>
+      </ion-button>
+      </div>
     </ion-card-content>
     
     </div>

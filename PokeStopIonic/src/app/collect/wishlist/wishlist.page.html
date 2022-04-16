@@ -17,15 +17,19 @@
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-button style="float: right;" (click)="removeFromWishlist($event, card)">
-          <ion-icon name="remove-outline"></ion-icon>
-          <ion-label>Remove</ion-label>
-        </ion-button>
+        <br>
         {{card.cardNumber}}
         <br>
         {{card.cardRarity}}
         <br>
         {{card.cardElementType}}
+        <br>
+        <div style="float: left;">
+        <ion-button style="float: right;" size="small" (click)="removeFromWishlist($event, card)">
+          <ion-icon name="remove-outline"></ion-icon>
+          <ion-label>Remove</ion-label>
+        </ion-button>
+        </div>
       </ion-card-content>
     </div>
   </ion-card>
