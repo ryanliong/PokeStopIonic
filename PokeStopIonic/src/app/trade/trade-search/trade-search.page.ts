@@ -12,12 +12,14 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class TradeSearchPage implements OnInit {
   listings: Listing[] | null;
+  filteredListings: Listing[] | null;
   unsoldEnum = "UNSOLD";
   memberId: number | null;
   searchQuery: string;
 
   constructor(private listingService: ListingService, private router: Router, private sessionService: SessionService) {
     this.listings = new Array();
+    this.filteredListings = new Array();
   }
 
   ngOnInit() {
@@ -31,10 +33,20 @@ export class TradeSearchPage implements OnInit {
         console.log('browseComponent.ts: ' + error);
       }
     });
-  
+    this.filteredListings = this.listings;
   }
 
   viewListing(event, listing) {
     this.router.navigate(["/tabs/tab3/viewListing/" + listing.listingId]);
+  }
+
+  search(searchQuery) {
+    if (!searchQuery) { // revert back to the original array if no query
+      this.filteredListings = this.listings;
+    } else { // filter array by query
+      this.filteredListings = this.listings.filter((listing) => {
+        return (listing.listingName.toLowerCase().includes(searchQuery.toLowerCase()));
+      })
+    }
   }
 }

@@ -9,25 +9,46 @@
 
 <ion-content>
   <ion-searchbar
-    placeholder='Search Listing'
-    [(ngModel)]="searchQuery"
+    placeholder='Search Listing Here'
+    (ionChange)="search($event.target.value)"
     showCancelButton="focus"
     animated
   >
   </ion-searchbar>
-  <ion-card (click)="viewListing($event, listing)" *ngFor="let listing of listings">
-    <div *ngIf="listing.listingStatus === unsoldEnum && listing.memberEntity.userId != memberId">
-      <ion-img src="{{listing.listingPic}}" style="width: 20%; float: left;"></ion-img>
-      <div style="padding-left: 25%;">
-      <ion-card-header> 
-        <ion-card-title>
-          {{listing.listingName}}
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content style="float: right;">
-        <b style="font-size: 1.5rem;">${{listing.listingPrice}}</b>
-      </ion-card-content>
+  
+  <div *ngIf="filteredListings.length == 0" >
+    <ion-card (click)="viewListing($event, listing)" *ngFor="let listing of listings">
+      <div *ngIf="listing.listingStatus === unsoldEnum && listing.memberEntity.userId != memberId">
+        <ion-img src="{{listing.listingPic}}" style="width: 20%; float: left;"></ion-img>
+        <div style="padding-left: 25%;">
+        <ion-card-header> 
+          <ion-card-title>
+            {{listing.listingName}}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="float: right;">
+          <b style="font-size: 1.5rem;">${{listing.listingPrice}}</b>
+        </ion-card-content>
+        </div>
       </div>
-    </div>
-  </ion-card>
+    </ion-card>
+  </div>
+
+  <div *ngIf="filteredListings.length > 0" >
+    <ion-card (click)="viewListing($event, listing)" *ngFor="let listing of filteredListings">
+      <div *ngIf="listing.listingStatus === unsoldEnum && listing.memberEntity.userId != memberId">
+        <ion-img src="{{listing.listingPic}}" style="width: 20%; float: left;"></ion-img>
+        <div style="padding-left: 25%;">
+        <ion-card-header> 
+          <ion-card-title>
+            {{listing.listingName}}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="float: right;">
+          <b style="font-size: 1.5rem;">${{listing.listingPrice}}</b>
+        </ion-card-content>
+        </div>
+      </div>
+    </ion-card>
+  </div>
 </ion-content>
