@@ -28,7 +28,7 @@ export class ViewSetPage implements OnInit {
   }
 
   ngOnInit() {
-    this.refreshSet();
+    this.refreshSet();  
   }
 
   refreshSet() {
@@ -37,18 +37,16 @@ export class ViewSetPage implements OnInit {
     this.collectionService.getCollectionByMemberId().subscribe({
       next:(response)=>{
         this.cardsInCollection = response;
-
+        
         this.setService.getSetById(this.setId).subscribe({
           next:(response)=>{
             this.setToView = response;
             this.cardsToView = this.setToView.cardEntities;
-            
             this.showOwnedCards();
 
             this.wishlistService.getWishlistByMemberId().subscribe({
               next:(response)=> {
                 this.cardsInWishlist = response;
-
                 this.showWishedCards();
               }
             })
