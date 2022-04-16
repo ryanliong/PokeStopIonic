@@ -69,6 +69,7 @@ export class CheckoutDetailsPage implements OnInit {
               });
               this.modalController.dismiss(undefined, undefined, 'cartModal');
               this.router.navigate(['/tabs/tab1/my-orders'])
+
             }
           },
           error: (error) => {
@@ -80,13 +81,14 @@ export class CheckoutDetailsPage implements OnInit {
         console.log('***** checkout-details' + error);
       }
     })
-
-    const alert = await this.alertController.create({
-      header: 'Success',
-      message: 'Checkout Successful! Thank you for your order.',
-      buttons: ['Continue shopping']
-    })
-    await alert.present();
+    if (this.selectedValue != "paypal") {
+      const alert = await this.alertController.create({
+        header: 'Success',
+        message: 'Checkout Successful! Thank you for your order.',
+        buttons: ['Continue shopping']
+      })
+      await alert.present();
+    }
   }
 
   getImagePath(variable2) {
