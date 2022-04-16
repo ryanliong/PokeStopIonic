@@ -63,6 +63,15 @@ export class ShopHomePage implements OnInit {
     this.getCartByMember();
   }
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
   getAllProducts() {
     this.productService.getProducts().subscribe({
       next: (response) => {
@@ -174,7 +183,8 @@ export class ShopHomePage implements OnInit {
 
   async openCart() {
     const modal = await this.modalController.create({
-      component: CartPage
+      component: CartPage,
+      id: 'cartModal'
     });
     await modal.present();
   }

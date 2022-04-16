@@ -192,34 +192,35 @@ export class CartPage implements OnInit {
     await modal.present();
   }
 
-  async checkout() {
-    const alert = await this.alertController.create({
-      header: 'Success',
-      message: 'Checkout Successful! Thank you for your order.',
-      buttons: ['Continue shopping']
-    })
-    await alert.present();
+  // async checkout() {
+  //   const alert = await this.alertController.create({
+  //     header: 'Success',
+  //     message: 'Checkout Successful! Thank you for your order.',
+  //     buttons: ['Continue shopping']
+  //   })
+  //   await alert.present();
 
-    var requestJson =
-    {
-      "deliveryAddr": null,
-      "memberId": this.memberId,
-      "orderItemList": this.orderItems
-    };
+  //   var requestJson =
+  //   {
+  //     "deliveryAddr": null,
+  //     "memberId": this.memberId,
+  //     "orderItemList": this.orderItems
+  //   };
 
-    const request = JSON.stringify(requestJson);
-    console.log(request);
-    this.orderService.checkout(request).subscribe({
-      next: (response) => {
-        console.log(response);
-        this.getCartByMember();
-      },
-      error: (error) => {
-        console.log('***** cartPage_deleteOrderItem' + error);
-      }
-    })
-    this.modalController.dismiss();
-  }
+  //   const request = JSON.stringify(requestJson);
+  //   console.log(request);
+  //   this.orderService.checkout(request).subscribe({
+  //     next: (response) => {
+  //       console.log(response);
+  //       this.getCartByMember();
+  //       this.modalController.dismiss();
+  //     },
+  //     error: (error) => {
+  //       console.log('***** cartPage_deleteOrderItem' + error);
+  //     }
+  //   })
+
+  // }
 
   getImagePath(variable2) {
     return "http:///192.168.50.69:8080/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;

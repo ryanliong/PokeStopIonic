@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"></ion-refresher>
   <ion-searchbar
     placeholder='Search "Gyarados Card Sleeves"'
     [(ngModel)]="searchQuery"
