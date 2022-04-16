@@ -8,6 +8,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { CheckoutDetailsPage } from '../checkout-details/checkout-details.page';
 import { Router } from '@angular/router';
 import { SessionService } from 'src/app/services/session.service';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   selector: 'app-cart',
@@ -15,6 +16,7 @@ import { SessionService } from 'src/app/services/session.service';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
+  IP = URLConstants.IPAddress;
   orderItems = [];
   products: Product | null;
   cart: Cart | null;
@@ -195,7 +197,7 @@ export class CartPage implements OnInit {
   }
 
   getImagePath(variable2) {
-    return "http:///192.168.50.69:8080/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
+    return this.IP + "/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
   }
 
 }

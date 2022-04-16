@@ -6,6 +6,7 @@ import { SetEntity } from 'src/app/models/set-entity';
 import { CollectionService } from 'src/app/services/collection.service';
 import { SetService } from 'src/app/services/set.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   selector: 'app-view-set',
@@ -13,7 +14,7 @@ import { WishlistService } from 'src/app/services/wishlist.service';
   styleUrls: ['./view-set.page.scss'],
 })
 export class ViewSetPage implements OnInit {
-
+  IP = URLConstants.IPAddress;
   setToView: SetEntity;
   cardsToView: Card[];
   setId: number;
@@ -137,11 +138,11 @@ export class ViewSetPage implements OnInit {
   }
 
   getSetImagePath(variable) {
-    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/setUploadedImages/" + variable;
+    return this.IP + "/PokeStopJsf-war/resources/images/setUploadedImages/" + variable;
   }
 
   getCardImagePath(variable) {
-    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/cardUploadedImages/" + variable;
+    return this.IP + "/PokeStopJsf-war/resources/images/cardUploadedImages/" + variable;
   }
 
   back()

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { PaymentService } from 'src/app/services/payment.service';
 import { SessionService } from 'src/app/services/session.service';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   selector: 'app-shop-search',
@@ -12,6 +13,7 @@ import { SessionService } from 'src/app/services/session.service';
   styleUrls: ['./checkout-details.page.scss'],
 })
 export class CheckoutDetailsPage implements OnInit {
+  IP = URLConstants.IPAddress;
   orderItems = null;
   subTotal = 0;
 
@@ -94,7 +96,7 @@ export class CheckoutDetailsPage implements OnInit {
   }
 
   getImagePath(variable2) {
-    return "http:///192.168.50.69:8080/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
+    return this.IP + "/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
   }
 
 }

@@ -10,6 +10,7 @@ import { Animation, AnimationController, ModalController } from '@ionic/angular'
 import { CartPage } from '../cart/cart.page';
 import { ProductDetailsPage } from '../product-details/product-details.page';
 import { SessionService } from 'src/app/services/session.service';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   selector: 'app-shop-home',
@@ -17,7 +18,7 @@ import { SessionService } from 'src/app/services/session.service';
   styleUrls: ['./shop-home.page.scss'],
 })
 export class ShopHomePage implements OnInit {
-
+  IP = URLConstants.IPAddress;
   products: Product[] | null;
   categories: Category[] | null;
   searchQuery: string;
@@ -178,7 +179,7 @@ export class ShopHomePage implements OnInit {
   }
 
   getImagePath(variable2) {
-    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
+    return this.IP + "/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
   }
 
   async openCart() {

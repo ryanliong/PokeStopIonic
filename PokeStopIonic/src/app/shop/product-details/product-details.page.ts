@@ -3,6 +3,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { OrderItemService } from 'src/app/services/order-item.service';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { SessionService } from 'src/app/services/session.service';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   selector: 'app-cart',
@@ -10,6 +11,7 @@ import { SessionService } from 'src/app/services/session.service';
   styleUrls: ['./product-details.page.scss'],
 })
 export class ProductDetailsPage implements OnInit {
+  IP = URLConstants.IPAddress;
   product = null;
   orderItems = [];
   orderItem = null;
@@ -124,7 +126,7 @@ export class ProductDetailsPage implements OnInit {
   // }
 
   getImagePath(variable2) {
-    return "http:///192.168.50.69:8080/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
+    return this.IP + "/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
   }
 
 }

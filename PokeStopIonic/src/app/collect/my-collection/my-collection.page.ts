@@ -6,6 +6,7 @@ import { Card } from 'src/app/models/card';
 import { SetEntity } from 'src/app/models/set-entity';
 import { CollectionService } from 'src/app/services/collection.service';
 import { SetService } from 'src/app/services/set.service';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   selector: 'app-my-collection',
@@ -13,7 +14,7 @@ import { SetService } from 'src/app/services/set.service';
   styleUrls: ['./my-collection.page.scss'],
 })
 export class MyCollectionPage implements OnInit {
-
+  IP = URLConstants.IPAddress;
   cardsToView: Card[];
   allSetsArray: number[];
   totalCards: number;
@@ -95,7 +96,7 @@ export class MyCollectionPage implements OnInit {
   }
 
   getCardImagePath(variable) {
-    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/cardUploadedImages/" + variable;
+    return this.IP + "/PokeStopJsf-war/resources/images/cardUploadedImages/" + variable;
   }
 
 }
