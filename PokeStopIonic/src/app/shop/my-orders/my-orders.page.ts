@@ -82,4 +82,9 @@ export class MyOrdersPage implements OnInit {
     }
   }
 
+  getImagePath(variable2) {
+    return "http:///192.168.50.69:8080/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
+  }
+
+
 }
