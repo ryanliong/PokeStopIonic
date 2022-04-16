@@ -4,12 +4,14 @@ import { OrderItemService } from 'src/app/services/order-item.service';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   templateUrl: './order-details.page.html',
   styleUrls: ['./order-details.page.scss'],
 })
 export class OrderDetailsPage implements OnInit {
+  IP = URLConstants.IPAddress;
   orderItems = [];
   orderItem = null;
   order = null;
@@ -83,7 +85,7 @@ export class OrderDetailsPage implements OnInit {
   }
 
   getImagePath(variable2) {
-    return "http:///192.168.50.69:8080/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
+    return this.IP + "/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
   }
 
 }

@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { OrderService } from 'src/app/services/order.service';
 import { SessionService } from 'src/app/services/session.service';
 import { OrderDetailsPage } from '../order-details/order-details.page';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   selector: 'app-my-orders',
@@ -10,6 +11,7 @@ import { OrderDetailsPage } from '../order-details/order-details.page';
   styleUrls: ['./my-orders.page.scss'],
 })
 export class MyOrdersPage implements OnInit {
+  IP = URLConstants.IPAddress;
   orderStatuses = ["Pending", "Out for delivery", "Delivered"]
   orders = [];
   filteredOrders = new Array();
@@ -83,7 +85,7 @@ export class MyOrdersPage implements OnInit {
   }
 
   getImagePath(variable2) {
-    return "http:///192.168.50.69:8080/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
+    return this.IP + "/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
   }
 
 

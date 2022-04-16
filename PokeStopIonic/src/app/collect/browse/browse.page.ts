@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { Generation } from 'src/app/models/generation';
 import { SetEntity } from 'src/app/models/set-entity';
 import { GenerationService } from 'src/app/services/generation.service';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   selector: 'app-browse',
@@ -11,7 +12,7 @@ import { GenerationService } from 'src/app/services/generation.service';
   styleUrls: ['./browse.page.scss'],
 })
 export class BrowsePage implements OnInit {
-
+  IP = URLConstants.IPAddress;
   generations: Generation[] | null;
   // setEntities: SetEntity[][] | null;
 
@@ -36,11 +37,11 @@ export class BrowsePage implements OnInit {
   }
 
   getGenerationImagePath(variable) {
-    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/generationUploadedImages/" + variable;
+    return this.IP + "/PokeStopJsf-war/resources/images/generationUploadedImages/" + variable;
   }
 
   getSetImagePath(variable) {
-    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/setUploadedImages/" + variable;
+    return this.IP + "/PokeStopJsf-war/resources/images/setUploadedImages/" + variable;
   }
 
   viewSet(event, setEntity) {

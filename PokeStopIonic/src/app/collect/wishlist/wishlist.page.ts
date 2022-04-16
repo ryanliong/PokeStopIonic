@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Card } from 'src/app/models/card';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { URLConstants } from 'src/app/global/url-constants';
 
 @Component({
   selector: 'app-wishlist',
@@ -10,7 +11,7 @@ import { WishlistService } from 'src/app/services/wishlist.service';
   styleUrls: ['./wishlist.page.scss'],
 })
 export class WishlistPage implements OnInit {
-
+  IP = URLConstants.IPAddress;
   cardsToView: Card[];
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private wishlistService: WishlistService, private alertController: AlertController) { }
@@ -58,7 +59,7 @@ export class WishlistPage implements OnInit {
   }
 
   getCardImagePath(variable) {
-    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/cardUploadedImages/" + variable;
+    return this.IP + "/PokeStopJsf-war/resources/images/cardUploadedImages/" + variable;
   }
 
 }
