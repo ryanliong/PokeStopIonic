@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { OrderService } from 'src/app/services/order.service';
+import { SessionService } from 'src/app/services/session.service';
 import { OrderDetailsPage } from '../order-details/order-details.page';
 
 @Component({
@@ -9,19 +10,18 @@ import { OrderDetailsPage } from '../order-details/order-details.page';
   styleUrls: ['./my-orders.page.scss'],
 })
 export class MyOrdersPage implements OnInit {
-
-
   orderStatuses = ["Pending", "Out for delivery", "Delivered"]
   orders = [];
   filteredOrders = new Array();
 
-  memberId = 1;
+  memberId = 0;
 
-  constructor(private orderService: OrderService, private modalController: ModalController) {
+  constructor(private orderService: OrderService, private modalController: ModalController, private sessionService: SessionService) {
     this.filteredOrders = new Array();
   }
 
   ngOnInit() {
+    this.memberId = this.sessionService.getMemberId();
     this.getOrderListByMemberId(this.memberId);
   }
 

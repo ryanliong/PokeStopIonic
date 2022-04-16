@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderItemService } from 'src/app/services/order-item.service';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,11 +15,12 @@ export class ProductDetailsPage implements OnInit {
   orderItem = null;
   productQty = 1;
 
-  memberId = 1;
+  memberId = 0;
 
-  constructor(private cartService: CartService, private orderItemService: OrderItemService, private modalController: ModalController, private alertController: AlertController, private navParams: NavParams) { }
+  constructor(private cartService: CartService, private orderItemService: OrderItemService, private modalController: ModalController, private alertController: AlertController, private navParams: NavParams, private sessionService: SessionService) { }
 
   ngOnInit() {
+    this.memberId = this.sessionService.getMemberId();
     this.product = this.navParams.get('Product');
     this.getCartByMember();
   }

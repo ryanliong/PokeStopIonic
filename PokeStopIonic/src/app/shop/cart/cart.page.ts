@@ -7,6 +7,7 @@ import { Cart } from 'src/app/models/cart';
 import { AlertController, ModalController } from '@ionic/angular';
 import { CheckoutDetailsPage } from '../checkout-details/checkout-details.page';
 import { Router } from '@angular/router';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,7 @@ export class CartPage implements OnInit {
   products: Product | null;
   cart: Cart | null;
 
-  memberId = 1;
+  memberId = 0;
 
   product = null;
   orderItem = null;
@@ -26,9 +27,10 @@ export class CartPage implements OnInit {
 
   subTotal = 0;
 
-  constructor(private cartService: CartService, private orderItemService: OrderItemService, private orderService: OrderService, private modalController: ModalController, private alertController: AlertController, private router: Router) { }
+  constructor(private cartService: CartService, private orderItemService: OrderItemService, private orderService: OrderService, private modalController: ModalController, private alertController: AlertController, private router: Router, private sessionService: SessionService) { }
 
   ngOnInit() {
+    this.memberId = this.sessionService.getMemberId();
     this.getCartByMember();
   }
 
@@ -191,36 +193,6 @@ export class CartPage implements OnInit {
     });
     await modal.present();
   }
-
-  // async checkout() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Success',
-  //     message: 'Checkout Successful! Thank you for your order.',
-  //     buttons: ['Continue shopping']
-  //   })
-  //   await alert.present();
-
-  //   var requestJson =
-  //   {
-  //     "deliveryAddr": null,
-  //     "memberId": this.memberId,
-  //     "orderItemList": this.orderItems
-  //   };
-
-  //   const request = JSON.stringify(requestJson);
-  //   console.log(request);
-  //   this.orderService.checkout(request).subscribe({
-  //     next: (response) => {
-  //       console.log(response);
-  //       this.getCartByMember();
-  //       this.modalController.dismiss();
-  //     },
-  //     error: (error) => {
-  //       console.log('***** cartPage_deleteOrderItem' + error);
-  //     }
-  //   })
-
-  // }
 
   getImagePath(variable2) {
     return "http:///192.168.50.69:8080/PokeStopJsf-war/resources/images/productUploadedImages/" + variable2;
