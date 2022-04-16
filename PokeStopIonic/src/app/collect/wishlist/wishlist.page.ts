@@ -57,4 +57,8 @@ export class WishlistPage implements OnInit {
     })
   }
 
+  getCardImagePath(variable) {
+    return "http://192.168.50.69:8080/PokeStopJsf-war/resources/images/cardUploadedImages/" + variable;
+  }
+
 }
