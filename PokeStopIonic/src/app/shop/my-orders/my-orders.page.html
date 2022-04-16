@@ -7,6 +7,23 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-item>
+  <ion-label>Filter by Order Status</ion-label>
+  <ion-select
+    okText="Ok"
+    cancelText="Cancel"
+    value="0"
+    (ionChange)="filterOrder($event);"
+  >
+    <ion-select-option selected value="0">All</ion-select-option>
+    <ion-select-option *ngFor="let orderStatus of orderStatuses">
+      {{orderStatus}}</ion-select-option
+    >
+  </ion-select>
+</ion-item>
+
+<hr />
+
 <ion-content *ngIf="orders.length == 0">
   <ion-card>
     <center>
@@ -23,23 +40,6 @@
 </ion-content>
 
 <ion-content *ngIf="orders.length > 0">
-  <ion-item>
-    <ion-label>Filter by Order Status</ion-label>
-    <ion-select
-      okText="Ok"
-      cancelText="Cancel"
-      value="0"
-      (ionChange)="filterOrder($event);"
-    >
-      <ion-select-option selected value="0">All</ion-select-option>
-      <ion-select-option *ngFor="let orderStatus of orderStatuses">
-        {{orderStatus}}</ion-select-option
-      >
-    </ion-select>
-  </ion-item>
-
-  <hr />
-
   <ion-list>
     <ion-item-sliding *ngFor="let order of orders">
       <ion-item (click)="openOrderDetails(order)">
