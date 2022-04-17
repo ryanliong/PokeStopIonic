@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://192.168.247.165:8080/PokeStopJsfRws/Resources",
+    "target": "http://192.168.50.69:8080/PokeStopJsfRws/Resources",
     "secure": false,
     "pathRewrite": {
       "^/api": ""
